@@ -3,189 +3,771 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEBINOR Computación - 25 años con vos</title>
+<title>SEBINOR Computación</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan: #00d4ff;
+  --cyan2: #00a8cc;
+  --cyan-dim: rgba(0,212,255,0.12);
+  --cyan-glow: rgba(0,212,255,0.4);
+  --dark: #020b14;
+  --dark2: #060f1a;
+  --dark3: #0a1828;
+  --card: rgba(6,20,38,0.85);
+  --border: rgba(0,212,255,0.15);
+  --border2: rgba(0,212,255,0.3);
+  --text: #e8f4ff;
+  --text2: #7fb3cc;
+  --text3: #3a6a84;
+  --gold: #f0b429;
+  --white: #ffffff;
+  --nav-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── GRID BACKGROUND ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ─── NAVBAR ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  background: rgba(2,11,20,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  width: 100%; max-width: 1400px; margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+.nav-logo img { height: 46px; width: auto; display: block; }
+.nav-links {
+  display: flex; align-items: center; gap: 0.15rem;
+  list-style: none;
+}
+.nav-links a {
+  padding: 0.4rem 0.75rem; border-radius: 4px;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.5px;
+  color: var(--text2); text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--cyan); background: var(--cyan-dim); }
+.nav-cta {
+  background: var(--cyan); color: var(--dark);
+  padding: 0.5rem 1.2rem; border-radius: 4px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; text-decoration: none;
+  transition: all 0.2s; white-space: nowrap;
+  box-shadow: 0 0 20px var(--cyan-glow);
+}
+.nav-cta:hover { background: #fff; box-shadow: 0 0 30px var(--cyan-glow); }
+.nav-burger { display: none; background: none; border: 1px solid var(--border2); color: var(--cyan); padding: 0.4rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 1.1rem; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; padding-top: var(--nav-h);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 40%, #041830 0%, var(--dark) 70%);
+}
+/* Líneas de luz animadas */
+.hero-lines {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.hero-lines span {
+  position: absolute; left: 50%; top: 50%;
+  width: 1px; background: linear-gradient(to bottom, transparent, rgba(0,212,255,0.6), transparent);
+  transform-origin: top center;
+  animation: rayos 6s ease-in-out infinite;
+}
+.hero-lines span:nth-child(1)  { height: 200px; transform: rotate(-30deg) translateX(-300px); animation-delay: 0s; }
+.hero-lines span:nth-child(2)  { height: 150px; transform: rotate(15deg) translateX(200px); animation-delay: 1.5s; }
+.hero-lines span:nth-child(3)  { height: 250px; transform: rotate(-60deg) translateX(-150px); animation-delay: 3s; }
+.hero-lines span:nth-child(4)  { height: 180px; transform: rotate(45deg) translateX(350px); animation-delay: 0.8s; }
+.hero-lines span:nth-child(5)  { height: 120px; transform: rotate(-15deg) translateX(100px); animation-delay: 2.2s; }
+@keyframes rayos {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 2rem;
+  gap: 1.5rem;
+}
+.hero-logo {
+  width: min(480px, 85vw);
+  animation: logoIn 1s ease-out both;
+  filter: drop-shadow(0 0 60px rgba(0,212,255,0.5));
+}
+@keyframes logoIn {
+  from { opacity: 0; transform: scale(0.85) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.hero-tagline {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(0.7rem, 2vw, 0.95rem);
+  letter-spacing: 6px; color: var(--cyan);
+  text-transform: uppercase;
+  animation: fadeUp 1s 0.3s ease-out both;
+}
+.hero-sub {
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  color: var(--text2); max-width: 500px; line-height: 1.7;
+  animation: fadeUp 1s 0.5s ease-out both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 1s 0.7s ease-out both;
+}
+.btn-primary {
+  background: var(--cyan); color: var(--dark);
+  padding: 0.85rem 2rem; border-radius: 4px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  box-shadow: 0 0 30px var(--cyan-glow);
+  transition: all 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 40px var(--cyan-glow); }
+.btn-outline {
+  background: transparent; color: var(--cyan);
+  border: 1px solid var(--border2);
+  padding: 0.85rem 2rem; border-radius: 4px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-outline:hover { background: var(--cyan-dim); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: var(--text3); font-size: 0.75rem; letter-spacing: 2px;
+  text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif;
+  animation: bounce 2s infinite;
+}
+.hero-scroll::after {
+  content: ''; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ─── SECCIÓN GENÉRICA ─── */
+.section { padding: 5rem 1.5rem; position: relative; z-index: 1; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem; letter-spacing: 5px;
+  color: var(--cyan); text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before {
+  content: ''; width: 30px; height: 1px; background: var(--cyan);
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700; line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.section-sub {
+  color: var(--text2); font-size: 1rem; max-width: 500px;
+  margin-bottom: 3rem; line-height: 1.7;
+}
+
+/* ─── CATEGORÍAS ─── */
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+.cat-card {
+  background: var(--dark2);
+  padding: 2rem 1.5rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  text-decoration: none; color: inherit;
+  transition: all 0.3s; position: relative; overflow: hidden;
+  cursor: pointer;
+}
+.cat-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--cyan-dim), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.cat-card:hover { background: var(--dark3); }
+.cat-card:hover::before { opacity: 1; }
+.cat-card:hover .cat-icon { color: var(--cyan); transform: scale(1.1); }
+.cat-card:hover .cat-arrow { opacity: 1; transform: translateX(0); }
+.cat-icon {
+  font-size: 2rem; transition: all 0.3s;
+  line-height: 1;
+}
+.cat-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.cat-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+.cat-arrow {
+  font-size: 0.85rem; color: var(--cyan);
+  opacity: 0; transform: translateX(-8px);
+  transition: all 0.3s; margin-top: auto;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 1px;
+}
+/* Colores por categoría */
+.cat-card:nth-child(1):hover { box-shadow: inset 0 0 0 1px rgba(0,212,255,0.4); }
+.cat-card:nth-child(2):hover { box-shadow: inset 0 0 0 1px rgba(255,100,50,0.4); }
+.cat-card:nth-child(2):hover .cat-icon { color: #ff6432; }
+.cat-card:nth-child(3):hover { box-shadow: inset 0 0 0 1px rgba(100,200,100,0.4); }
+.cat-card:nth-child(3):hover .cat-icon { color: #64c864; }
+.cat-card:nth-child(4):hover { box-shadow: inset 0 0 0 1px rgba(255,180,40,0.4); }
+.cat-card:nth-child(4):hover .cat-icon { color: #ffb428; }
+.cat-card:nth-child(5):hover { box-shadow: inset 0 0 0 1px rgba(180,100,255,0.4); }
+.cat-card:nth-child(5):hover .cat-icon { color: #b464ff; }
+.cat-card:nth-child(6):hover { box-shadow: inset 0 0 0 1px rgba(255,200,0,0.4); }
+.cat-card:nth-child(6):hover .cat-icon { color: #ffc800; }
+.cat-card:nth-child(7):hover { box-shadow: inset 0 0 0 1px rgba(255,80,80,0.4); }
+.cat-card:nth-child(7):hover .cat-icon { color: #ff5050; }
+.cat-card:nth-child(8):hover { box-shadow: inset 0 0 0 1px rgba(0,200,180,0.4); }
+.cat-card:nth-child(8):hover .cat-icon { color: #00c8b4; }
+
+/* ─── STATS ─── */
+.stats-bar {
+  background: var(--dark3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 1.5rem;
+}
+.stats-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; text-align: center;
+}
+.stat-num {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900; color: var(--cyan);
+  line-height: 1;
+  text-shadow: 0 0 30px var(--cyan-glow);
+}
+.stat-label {
+  font-size: 0.8rem; color: var(--text2);
+  letter-spacing: 1px; text-transform: uppercase;
+  font-family: 'Barlow Condensed', sans-serif;
+  margin-top: 0.4rem;
+}
+
+/* ─── DESTACADOS ─── */
+.featured-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.feat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+  transition: all 0.3s; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+}
+.feat-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,212,255,0.1); }
+.feat-img {
+  height: 180px; background: var(--dark3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; position: relative; overflow: hidden;
+}
+.feat-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, var(--card));
+}
+.feat-badge {
+  position: absolute; top: 1rem; left: 1rem; z-index: 1;
+  background: var(--cyan); color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 1px;
+  padding: 0.2rem 0.6rem; border-radius: 2px;
+  text-transform: uppercase;
+}
+.feat-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.6rem; }
+.feat-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; }
+.feat-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.6; }
+.feat-link {
+  margin-top: auto; color: var(--cyan); font-size: 0.85rem;
+  font-family: 'Barlow Condensed', sans-serif; letter-spacing: 1px;
+  text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem;
+}
+
+/* ─── CONTACTO ─── */
+.contact-section {
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+  padding: 5rem 1.5rem;
+}
+.contact-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.2rem; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--card); transition: border-color 0.2s;
+}
+.contact-item:hover { border-color: var(--border2); }
+.ci-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.ci-label { font-size: 0.72rem; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+.ci-val { font-weight: 500; margin-top: 0.2rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 0.75rem; color: var(--text2); letter-spacing: 1px; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+.form-group input, .form-group textarea, .form-group select {
+  background: var(--dark3); border: 1px solid var(--border);
+  border-radius: 4px; padding: 0.75rem 1rem; color: var(--text);
+  font-family: 'Barlow', sans-serif; font-size: 0.9rem;
+  transition: border-color 0.2s; resize: vertical;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  outline: none; border-color: var(--cyan);
+  box-shadow: 0 0 0 2px rgba(0,212,255,0.1);
+}
+.form-group select option { background: var(--dark3); }
+.form-group textarea { height: 120px; }
+.btn-submit {
+  background: var(--cyan); color: var(--dark);
+  border: none; padding: 1rem 2rem; border-radius: 4px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; cursor: pointer;
+  box-shadow: 0 0 20px var(--cyan-glow);
+  transition: all 0.2s;
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 4px 30px var(--cyan-glow); }
+
+/* ─── RESEÑAS ─── */
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.review-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+.review-card:hover { border-color: var(--border2); }
+.review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+.review-text { font-size: 0.9rem; color: var(--text2); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+.review-author { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; color: var(--cyan); letter-spacing: 1px; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #010810;
+  border-top: 1px solid var(--border);
+  padding: 3rem 1.5rem 1.5rem;
+}
+.footer-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 2.5rem; margin-bottom: 2.5rem;
+}
+.footer-brand img { height: 50px; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.85rem; color: var(--text3); line-height: 1.7; max-width: 260px; }
+.footer-col h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem; letter-spacing: 2px; color: var(--cyan);
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-col ul li a { color: var(--text3); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--cyan); }
+.footer-col p { color: var(--text3); font-size: 0.85rem; line-height: 1.8; }
+.footer-bottom {
+  max-width: 1200px; margin: 0 auto;
+  border-top: 1px solid var(--border); padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+}
+.footer-bottom span, .footer-bottom a { color: var(--text3); font-size: 0.78rem; text-decoration: none; }
+.footer-bottom a:hover { color: var(--cyan); }
+
+/* ─── WHATSAPP ─── */
+.wa-btn {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+  background: #25d366; color: #fff;
+  border-radius: 50px; padding: 0.75rem 1.4rem;
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  transition: all 0.2s;
+}
+.wa-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+.wa-icon { font-size: 1.2rem; }
+
+/* ─── DIVIDER ─── */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border2), transparent); margin: 0; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .cats-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: block; }
+  .cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .cats-grid { grid-template-columns: 1fr 1fr; }
+  .hero-btns { flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
+<nav class="nav">
+  <div class="nav-inner">
     <div class="nav-logo">
-      <a href="#inicio"><img src="img/logo.png" alt="SEBINOR Computación" class="nav-logo-img"></a>
+      <a href="#inicio"><img src="img/logo.png" alt="SEBINOR Computación"></a>
     </div>
-    <button class="nav-toggle" id="navToggle">☰</button>
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-      <li><a href="pages/outlet.html" class="nav-link">Outlet</a></li>
-      <li><a href="pages/equipos.html" class="nav-link">Equipos Nuevos</a></li>
-      <li><a href="pages/impresion3d.html" class="nav-link">Impresión 3D</a></li>
-      <li><a href="pages/estudio.html" class="nav-link">Estudio</a></li>
-      <li><a href="pages/paginasweb.html" class="nav-link">Páginas Web</a></li>
-      <li><a href="pages/servicio.html" class="nav-link">Servicio Técnico</a></li>
-      <li><a href="pages/monitores.html" class="nav-link">Monitores</a></li>
-      <li><a href="#contacto" class="nav-link">Contacto</a></li>
-      <li><a href="https://wa.me/5491526106011" class="btn-solicitar" target="_blank">SOLICITAR TÉCNICO</a></li>
+    <ul class="nav-links">
+      <li><a href="#categorias">Servicios</a></li>
+      <li><a href="#destacados">Destacados</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
     </ul>
+    <a href="https://wa.me/5491526106011" class="nav-cta" target="_blank">💬 WhatsApp</a>
+    <button class="nav-burger" id="burger">☰</button>
   </div>
 </nav>
 
-<!-- HERO SLIDER -->
+<!-- HERO -->
 <section class="hero" id="inicio">
-  <div class="hero-slides">
-    <div class="hero-slide active" style="background: radial-gradient(ellipse at center, #0a1628 0%, #000 70%);">
-      <div class="hero-content">
-        <img src="img/logo.png" alt="SEBINOR Computación" class="hero-logo-img">
-        <p class="hero-slogan">25 años con vos</p>
-      </div>
-    </div>
-    <div class="hero-slide" style="background: linear-gradient(135deg, #0d0d1a 0%, #1a0533 50%, #000 100%);">
-      <div class="hero-content">
-        <h2 class="slide-title">Servicio Técnico</h2>
-        <p class="slide-sub">Reparación profesional con diagnóstico gratuito</p>
-      </div>
-    </div>
-    <div class="hero-slide" style="background: linear-gradient(135deg, #000 0%, #001a33 100%);">
-      <div class="hero-content">
-        <h2 class="slide-title">PC Gamer a Medida</h2>
-        <p class="slide-sub">Armamos tu equipo con los mejores componentes</p>
-      </div>
+  <div class="hero-bg"></div>
+  <div class="hero-lines">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-content">
+    <img src="img/logo.png" alt="SEBINOR Computación" class="hero-logo">
+    <p class="hero-tagline">Tu experto en tecnología desde 2002</p>
+    <p class="hero-sub">Reparación, venta, armado de PCs a medida, impresión 3D, estudio de grabación y mucho más. Todo en un solo lugar.</p>
+    <div class="hero-btns">
+      <a href="#categorias" class="btn-primary">Ver servicios</a>
+      <a href="#contacto" class="btn-outline">Contactarnos</a>
     </div>
   </div>
-  <div class="hero-dots">
-    <span class="dot active" onclick="goToSlide(0)"></span>
-    <span class="dot" onclick="goToSlide(1)"></span>
-    <span class="dot" onclick="goToSlide(2)"></span>
-  </div>
-  <button class="hero-arrow prev" onclick="changeSlide(-1)">‹</button>
-  <button class="hero-arrow next" onclick="changeSlide(1)">›</button>
+  <div class="hero-scroll">Scroll</div>
 </section>
 
-<!-- CATEGORÍAS -->
-<section class="categories">
-  <p class="categories-title">Tu experto en tecnología desde el diagnóstico hasta la solución</p>
-  <div class="cat-grid">
-    <a href="pages/equipos.html" class="cat-btn cat-pc">PC Nuevas</a>
-    <a href="#" class="cat-btn cat-consolas">Consolas</a>
-    <a href="#" class="cat-btn cat-electronica">Electrónica</a>
-    <a href="pages/impresion3d.html" class="cat-btn cat-3d">Impresión 3D</a>
-    <a href="pages/estudio.html" class="cat-btn cat-estudio">Estudio</a>
-    <a href="pages/paginasweb.html" class="cat-btn cat-web">Páginas Web</a>
-    <a href="pages/outlet.html" class="cat-btn cat-outlet">Outlet</a>
-    <a href="pages/servicio.html" class="cat-btn cat-servicio">Servicio Técnico</a>
-  </div>
-</section>
-
-<!-- BANNER ELECTRÓNICA DEL HOGAR -->
-<section class="banner-hogar">
-  <div class="banner-content">
-    <div class="banner-icon">🏠</div>
-    <div class="banner-text">
-      <span class="banner-small">VISITÁ NUESTRA TIENDA</span>
-      <h3 class="banner-title">Electrónica del Hogar</h3>
-      <p class="banner-desc">Heladeras, lavarropas, cocinas, microondas y mucho más</p>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">25+</div>
+      <div class="stat-label">Años de experiencia</div>
     </div>
-    <a href="#" class="banner-btn">Ir a la tienda ↗</a>
+    <div>
+      <div class="stat-num">5k+</div>
+      <div class="stat-label">Clientes atendidos</div>
+    </div>
+    <div>
+      <div class="stat-num">4.7★</div>
+      <div class="stat-label">Reseñas Google</div>
+    </div>
+    <div>
+      <div class="stat-num">8</div>
+      <div class="stat-label">Servicios disponibles</div>
+    </div>
   </div>
-</section>
-
-<!-- SOCIAL PROOF -->
-<div class="social-proof">
-  <a href="#" class="btn-tiktok">▶ Ver en TikTok</a>
-  <a href="#" class="btn-review">⭐ Dejá tu reseña</a>
-  <div class="stars">★★★★☆ <span class="rating">4.7</span></div>
-  <p class="thanks">Gracias por el apoyo!</p>
 </div>
 
-<!-- SERVICIOS DESTACADOS -->
-<section class="services" id="servicios">
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">🔧</div>
-      <h3>Servicio Técnico</h3>
-      <p>Reparación profesional de computadoras, notebooks, consolas y dispositivos electrónicos con diagnóstico gratuito.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🖥️</div>
-      <h3>Armado de PC</h3>
-      <p>Diseñamos tu PC gaming o de trabajo a medida, con los mejores componentes y garantía extendida.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🎮</div>
-      <h3>Venta de Insumos</h3>
-      <p>Componentes, periféricos y accesorios de las mejores marcas del mercado.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🥽</div>
-      <h3>Realidad Virtual</h3>
-      <p>Distribuidores oficiales MetaQuest. Experimentá el futuro de la tecnología inmersiva.</p>
+<!-- CATEGORÍAS -->
+<section class="section" id="categorias">
+  <div class="section-inner">
+    <p class="section-label">Lo que hacemos</p>
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-sub">Tecnología para cada necesidad. Hacé clic en cualquier categoría para consultar.</p>
+    <div class="cats-grid">
+
+      <a href="https://wa.me/5491526106011?text=Quiero%20armar%20mi%20PC" class="cat-card" target="_blank">
+        <div class="cat-icon">🖥️</div>
+        <div class="cat-name">Armá tu PC</div>
+        <div class="cat-desc">PCs gaming y de trabajo ensambladas a medida con los mejores componentes y garantía extendida.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="pages/monitores.html" class="cat-card">
+        <div class="cat-icon">🖥️</div>
+        <div class="cat-name">Monitores</div>
+        <div class="cat-desc">Gaming, oficina y profesionales. Full HD, QHD, curvo. Nuevos con garantía.</div>
+        <div class="cat-arrow">Ver stock →</div>
+      </a>
+
+      <a href="pages/equipos.html" class="cat-card">
+        <div class="cat-icon">💻</div>
+        <div class="cat-name">Equipos Nuevos</div>
+        <div class="cat-desc">PCs de escritorio y notebooks de las mejores marcas. Stock disponible.</div>
+        <div class="cat-arrow">Ver equipos →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Necesito%20servicio%20técnico" class="cat-card" target="_blank">
+        <div class="cat-icon">🔧</div>
+        <div class="cat-name">Servicio Técnico</div>
+        <div class="cat-desc">Reparación de PCs, notebooks, consolas y celulares. Diagnóstico sin cargo.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20consolas" class="cat-card" target="_blank">
+        <div class="cat-icon">🎮</div>
+        <div class="cat-name">Consolas</div>
+        <div class="cat-desc">PlayStation, Xbox, Nintendo Switch. Venta, reparación y accesorios.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20impresión%203D" class="cat-card" target="_blank">
+        <div class="cat-icon">⚙️</div>
+        <div class="cat-name">Impresión 3D</div>
+        <div class="cat-desc">Figuras, repuestos, prototipos y diseño 3D a medida. Filamentos PLA premium.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20estudio%20de%20grabación" class="cat-card" target="_blank">
+        <div class="cat-icon">🎙️</div>
+        <div class="cat-name">Estudio de Grabación</div>
+        <div class="cat-desc">Grabación de bandas, clases de música, streaming y sala de ensayo profesional.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20programación%20a%20medida" class="cat-card" target="_blank">
+        <div class="cat-icon">💻</div>
+        <div class="cat-name">Programación a Medida</div>
+        <div class="cat-desc">Apps, sitios web, sistemas para tu negocio y automatizaciones. Desarrollo profesional.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
+
+<!-- DESTACADOS -->
+<section class="section" id="destacados">
+  <div class="section-inner">
+    <p class="section-label">Lo más consultado</p>
+    <h2 class="section-title">Destacados</h2>
+    <p class="section-sub">Los productos y servicios más buscados esta semana.</p>
+    <div class="featured-grid">
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20PC%20Gamer%20Ryzen%205" class="feat-card" target="_blank">
+        <div class="feat-img">🖥️
+          <div class="feat-badge">Stock disponible</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-title">PC Gamer AMD Ryzen 5 5600G</div>
+          <div class="feat-desc">Ryzen 5 5600G · 8GB RAM · SSD 240GB · Gabinete RGB · Garantía 6 meses</div>
+          <div class="feat-link">Consultar precio →</div>
+        </div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20Monitor%20Gaming" class="feat-card" target="_blank">
+        <div class="feat-img">🖥️
+          <div class="feat-badge">Oferta</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-title">Monitor Acer Nitro 27" QHD 180Hz</div>
+          <div class="feat-desc">27" QHD 1440p · Panel IPS · 180Hz · 0.5ms · AMD FreeSync Premium</div>
+          <div class="feat-link">Consultar precio →</div>
+        </div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Necesito%20reparación%20de%20notebook" class="feat-card" target="_blank">
+        <div class="feat-img">🔧
+          <div class="feat-badge">Diagnóstico gratis</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-title">Reparación de Notebooks</div>
+          <div class="feat-desc">Pantalla, teclado, placa de video, virus, formateo y actualizaciones. Garantía incluida.</div>
+          <div class="feat-link">Solicitar turno →</div>
+        </div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Quiero%20una%20página%20web" class="feat-card" target="_blank">
+        <div class="feat-img">💻
+          <div class="feat-badge">Nuevo</div>
+        </div>
+        <div class="feat-body">
+          <div class="feat-title">Tu Página Web Profesional</div>
+          <div class="feat-desc">Diseño moderno, responsive, con SEO y hosting incluido. Tiendas online, portfolios y sitios corporativos.</div>
+          <div class="feat-link">Consultar →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NOSOTROS -->
+<div class="stats-bar" id="nosotros" style="padding: 4rem 1.5rem;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+    <div>
+      <p class="section-label" style="margin-bottom:0.75rem;">Sobre nosotros</p>
+      <h2 class="section-title" style="margin-bottom:1rem;">25 años siendo<br>tu socio tecnológico</h2>
+      <p style="color:var(--text2);line-height:1.8;margin-bottom:1.5rem;">
+        Desde 2002 ayudamos a vecinos y empresas de la zona con todo lo que tiene que ver con tecnología. Empezamos como taller de reparaciones y hoy somos un centro tecnológico completo: vendemos, reparamos, diseñamos, grabamos y programamos.
+      </p>
+      <p style="color:var(--text2);line-height:1.8;">
+        Atención personalizada, precios justos y siempre la solución más conveniente para vos.
+      </p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">🔧</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-bottom:0.3rem;">Diagnóstico Gratis</div>
+        <div style="font-size:0.82rem;color:var(--text2);">Sin costo, sin compromiso</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">🛡️</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-bottom:0.3rem;">Garantía Real</div>
+        <div style="font-size:0.82rem;color:var(--text2);">En todos nuestros trabajos</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">📍</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-bottom:0.3rem;">Local Propio</div>
+        <div style="font-size:0.82rem;color:var(--text2);">Av. Libertador 7615</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">⚡</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-bottom:0.3rem;">Respuesta Rápida</div>
+        <div style="font-size:0.82rem;color:var(--text2);">Te respondemos en minutos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- RESEÑAS -->
+<section class="section">
+  <div class="section-inner">
+    <p class="section-label">Lo que dicen</p>
+    <h2 class="section-title">Nuestros Clientes</h2>
+    <p class="section-sub">+500 reseñas positivas en Google.</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Me armaron la PC gamer de mis sueños a un precio justo. El servicio fue increíble, muy detallistas con cada componente."</p>
+        <div class="review-author">— Martín G.</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El técnico vino a casa y resolvió todo en una hora. Diagnóstico rápido, precio razonable y muy amables. Los recomiendo."</p>
+        <div class="review-author">— Laura P.</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré mi notebook acá y quedé encantado. Buena atención, me explicaron todo y el precio fue mejor que en cualquier cadena."</p>
+        <div class="review-author">— Diego R.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- CONTACTO -->
 <section class="contact-section" id="contacto">
-  <div class="contact-container">
-    <div class="contact-info">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-sub">Estamos para ayudarte. Escribinos o visitanos en nuestra tienda</p>
-      <div class="contact-card">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label" style="margin-bottom:0.75rem;">Hablemos</p>
+      <h2 class="section-title" style="margin-bottom:1rem;">Contactanos</h2>
+      <p style="color:var(--text2);line-height:1.8;margin-bottom:2rem;">Estamos para ayudarte. Escribinos por WhatsApp o mandanos un mensaje y te respondemos a la brevedad.</p>
+      <div class="contact-info">
         <div class="contact-item">
-          <span class="contact-icon">📞</span>
+          <span class="ci-icon">📞</span>
           <div>
-            <div class="contact-label">Teléfono / WhatsApp</div>
-            <div class="contact-value">+54 9 15 2610-6011</div>
+            <div class="ci-label">Teléfono / WhatsApp</div>
+            <div class="ci-val">+54 9 15 2610-6011</div>
           </div>
         </div>
         <div class="contact-item">
-          <span class="contact-icon">✉️</span>
+          <span class="ci-icon">✉️</span>
           <div>
-            <div class="contact-label">Email</div>
-            <div class="contact-value">sebinorcomputacion@yahoo.com</div>
+            <div class="ci-label">Email</div>
+            <div class="ci-val">sebinorcomputacion@yahoo.com</div>
           </div>
         </div>
         <div class="contact-item">
-          <span class="contact-icon">📍</span>
+          <span class="ci-icon">📍</span>
           <div>
-            <div class="contact-label">Dirección</div>
-            <div class="contact-value">Av. Libertador 7615</div>
+            <div class="ci-label">Dirección</div>
+            <div class="ci-val">Av. Libertador 7615, San Miguel</div>
           </div>
         </div>
         <div class="contact-item">
-          <span class="contact-icon">🕐</span>
+          <span class="ci-icon">🕐</span>
           <div>
-            <div class="contact-label">Horarios</div>
-            <div class="contact-value">Martes a Sábado: 9:30 - 16:30 (corrido)<br>Domingos: 9:30 - 13:00</div>
+            <div class="ci-label">Horarios</div>
+            <div class="ci-val">Martes a Sábado: 9:30 - 16:30<br>Domingos: 9:30 - 13:00</div>
           </div>
-        </div>
-      </div>
-
-      <div class="reviews">
-        <h3>Lo que dicen nuestros clientes</h3>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"Excelente servicio. Me armaron la PC de mis sueños a un precio justo."</p>
-          <span>- Martín G.</span>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"El técnico vino a casa y resolvió todo en una hora. Super profesionales."</p>
-          <span>- Laura P.</span>
-        </div>
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p>"Compré mi MetaQuest acá. Mejor precio y atención del mercado."</p>
-          <span>- Diego R.</span>
         </div>
       </div>
     </div>
-
-    <div class="contact-form-wrapper">
-      <h3>✉️ Envianos un Mensaje</h3>
-      <p>Responderemos a la brevedad posible</p>
-      <div class="contact-form">
+    <div class="contact-form">
+      <div class="form-row">
         <div class="form-group">
           <label>Nombre *</label>
           <input type="text" placeholder="Tu nombre">
@@ -194,72 +776,122 @@
           <label>Email *</label>
           <input type="email" placeholder="tu@email.com">
         </div>
-        <div class="form-group">
-          <label>Asunto</label>
-          <input type="text" placeholder="Asunto de tu consulta">
-        </div>
-        <div class="form-group">
-          <label>Mensaje *</label>
-          <textarea placeholder="Escribe tu mensaje aquí..."></textarea>
-        </div>
-        <button class="btn-enviar">✈️ ENVIAR MENSAJE</button>
       </div>
+      <div class="form-group">
+        <label>Servicio</label>
+        <select>
+          <option value="">Seleccioná un servicio...</option>
+          <option>Armá tu PC</option>
+          <option>Monitores</option>
+          <option>Equipos Nuevos</option>
+          <option>Servicio Técnico</option>
+          <option>Consolas</option>
+          <option>Impresión 3D</option>
+          <option>Estudio de Grabación</option>
+          <option>Programación a Medida</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje *</label>
+        <textarea placeholder="Contanos en qué podemos ayudarte..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="enviarWA()">Enviar por WhatsApp →</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-container">
+<footer>
+  <div class="footer-grid">
     <div class="footer-brand">
-      <div class="footer-logo">
-        <div class="logo-icon">S</div>
-        <span class="logo-name">SEBINOR</span>
-      </div>
-      <p class="footer-slogan">25 años con vos</p>
-      <p class="footer-desc">Tu experto en tecnología desde el diagnóstico hasta la solución. Servicio técnico profesional, venta de equipos y atención personalizada.</p>
+      <img src="img/logo.png" alt="SEBINOR">
+      <p>Tu centro tecnológico de confianza en San Miguel desde 2002. Reparamos, vendemos, diseñamos y programamos.</p>
     </div>
-    <div class="footer-links">
-      <h4>Enlaces Rápidos</h4>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#">Armá tu PC</a></li>
+        <li><a href="pages/monitores.html">Monitores</a></li>
+        <li><a href="pages/equipos.html">Equipos Nuevos</a></li>
+        <li><a href="#">Servicio Técnico</a></li>
+        <li><a href="#">Consolas</a></li>
+        <li><a href="#">Impresión 3D</a></li>
+        <li><a href="#">Estudio</a></li>
+        <li><a href="#">Programación</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Links</h4>
       <ul>
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="pages/outlet.html">Outlet</a></li>
-        <li><a href="pages/equipos.html">Equipos Nuevos</a></li>
-        <li><a href="pages/servicio.html">Servicio Técnico</a></li>
+        <li><a href="#categorias">Categorías</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
-    <div class="footer-contact">
+    <div class="footer-col">
       <h4>Contacto</h4>
-      <p>📞 +54 9 15 2610-6011</p>
-      <p>✉️ sebinorcomputacion@yahoo.com</p>
-      <p>📍 Av. Libertador 7615</p>
-    </div>
-    <div class="footer-hours">
-      <h4>Horarios</h4>
-      <p>Martes a Sábado: 9:30 - 16:30 (corrido)</p>
-      <p>Domingos: 9:30 - 13:00</p>
-      <h4 style="margin-top:1rem;">Seguinos</h4>
-      <div class="social-links">
-        <a href="#" class="social-btn">TikTok</a>
-        <a href="https://wa.me/5491526106011" class="social-btn">WhatsApp</a>
-      </div>
+      <p>📞 +54 9 15 2610-6011<br>✉️ sebinorcomputacion@yahoo.com<br>📍 Av. Libertador 7615<br>⏰ Mar–Sáb 9:30–16:30</p>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 SEBINOR Computación. Todos los derechos reservados.</span>
-    <div>
-      <a href="#">Términos y Condiciones</a>
-      <a href="#">Política de Privacidad</a>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="#">Términos</a>
+      <a href="#">Privacidad</a>
     </div>
   </div>
 </footer>
 
 <!-- WHATSAPP FLOTANTE -->
-<a href="https://wa.me/5491526106011" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/5491526106011" class="wa-btn" target="_blank">
   <span class="wa-icon">💬</span> Chateá con nosotros
 </a>
 
-<script src="js/main.js"></script>
+<script>
+// Scroll suave navbar
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  nav.style.background = window.scrollY > 40
+    ? 'rgba(2,11,20,0.98)'
+    : 'rgba(2,11,20,0.92)';
+});
+
+// Enviar por WhatsApp
+function enviarWA() {
+  const nombre = document.querySelector('input[placeholder="Tu nombre"]').value || 'Sin nombre';
+  const servicio = document.querySelector('select').value || 'Consulta general';
+  const msg = document.querySelector('textarea').value || '';
+  const text = encodeURIComponent(`Hola, soy ${nombre}. Consulta por: ${servicio}. ${msg}`);
+  window.open(`https://wa.me/5491526106011?text=${text}`, '_blank');
+}
+
+// Animaciones on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.cat-card, .feat-card, .review-card, .contact-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+
+// Burger menu
+document.getElementById('burger').addEventListener('click', () => {
+  const menu = document.querySelector('.nav-links');
+  const cta = document.querySelector('.nav-cta');
+  const open = menu.style.display === 'flex';
+  menu.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(2,11,20,0.98);padding:1rem;border-bottom:1px solid rgba(0,212,255,0.15);gap:0.25rem;z-index:99;';
+  if (cta) cta.style.display = open ? '' : 'none';
+});
+</script>
 </body>
 </html>
