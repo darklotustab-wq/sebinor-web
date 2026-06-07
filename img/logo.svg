@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" width="200" height="160">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628"/>
+      <stop offset="100%" style="stop-color:#0d2040"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a3a5c"/>
+      <stop offset="100%" style="stop-color:#1a2540"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7dd8f0"/>
+      <stop offset="100%" style="stop-color:#1a8ab5"/>
+    </linearGradient>
+  </defs>
+  <!-- Escudo exterior -->
+  <polygon points="20,30 180,30 190,80 100,150 10,80" fill="url(#shield)" stroke="#4a6a9c" stroke-width="2"/>
+  <!-- Escudo interior superior -->
+  <rect x="25" y="28" width="150" height="65" rx="4" fill="#1e2d4a" stroke="#5a8abc" stroke-width="1.5"/>
+  <!-- Texto SEBINOR -->
+  <text x="100" y="75" font-family="Arial Black, sans-serif" font-size="32" font-weight="900" fill="url(#text-grad)" text-anchor="middle" letter-spacing="2" stroke="#0a5a8a" stroke-width="0.5">SEBINOR</text>
+  <!-- Escudo inferior -->
+  <polygon points="40,95 160,95 170,115 100,145 30,115" fill="#15213a" stroke="#4a6a9c" stroke-width="1.5"/>
+  <!-- Texto COMPUTACIÓN -->
+  <text x="100" y="112" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#c0d8f0" text-anchor="middle" letter-spacing="1">COMPUTACIÓN</text>
+  <!-- Texto EST 2002 -->
+  <text x="100" y="126" font-family="Arial, sans-serif" font-size="9" fill="#8aaccc" text-anchor="middle" letter-spacing="1">EST. 2002</text>
+</svg>
