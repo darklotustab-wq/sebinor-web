@@ -224,6 +224,11 @@ body::before {
   border: 1px solid var(--border);
   border-radius: 8px; overflow: hidden;
 }
+.cats-grid .cat-card:last-child:nth-child(4n-3),
+.cats-grid .cat-card:last-child:nth-child(4n-2),
+.cats-grid .cat-card:last-child:nth-child(4n-1) {
+  grid-column: auto;
+}
 .cat-card {
   background: var(--dark2);
   padding: 2rem 1.5rem;
@@ -510,30 +515,8 @@ footer {
   <div class="hero-scroll">Scroll</div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div>
-      <div class="stat-num">25+</div>
-      <div class="stat-label">Años de experiencia</div>
-    </div>
-    <div>
-      <div class="stat-num">5k+</div>
-      <div class="stat-label">Clientes atendidos</div>
-    </div>
-    <div>
-      <div class="stat-num">4.7★</div>
-      <div class="stat-label">Reseñas Google</div>
-    </div>
-    <div>
-      <div class="stat-num">8</div>
-      <div class="stat-label">Servicios disponibles</div>
-    </div>
-  </div>
-</div>
-
-<!-- CATEGORÍAS -->
-<section class="section" id="categorias">
+<!-- CATEGORÍAS (movidas arriba de stats) -->
+<section class="section" id="categorias" style="padding-bottom:0;">
   <div class="section-inner">
     <p class="section-label">Lo que hacemos</p>
     <h2 class="section-title">Nuestros Servicios</h2>
@@ -596,11 +579,52 @@ footer {
         <div class="cat-arrow">Consultar →</div>
       </a>
 
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20realidad%20virtual" class="cat-card" target="_blank">
+        <div class="cat-icon">🥽</div>
+        <div class="cat-name">Realidad Virtual</div>
+        <div class="cat-desc">Distribuidores oficiales MetaQuest. Visores VR, accesorios y reparación especializada.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20drones" class="cat-card" target="_blank">
+        <div class="cat-icon">🚁</div>
+        <div class="cat-name">Drones</div>
+        <div class="cat-desc">Venta, reparación y accesorios de drones. DJI y otras marcas. Servicio técnico especializado.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20televisores" class="cat-card" target="_blank">
+        <div class="cat-icon">📺</div>
+        <div class="cat-name">Televisores</div>
+        <div class="cat-desc">Smart TVs nuevos y reacondicionados. LED, OLED, 4K. Instalación y garantía incluida.</div>
+        <div class="cat-arrow">Consultar →</div>
+      </a>
+
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">25+</div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div>
+      <div class="stat-num">5k+</div>
+      <div class="stat-label">Clientes atendidos</div>
+    </div>
+    <div>
+      <div class="stat-num">4.7★</div>
+      <div class="stat-label">Reseñas Google</div>
+    </div>
+    <div>
+      <div class="stat-num">8</div>
+      <div class="stat-label">Servicios disponibles</div>
+    </div>
+  </div>
+</div>
 
 <!-- DESTACADOS -->
 <section class="section" id="destacados">
