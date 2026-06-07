@@ -3,152 +3,534 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monitores - SEBINOR</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<title>Monitores - SEBINOR Computación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-.monitor-specs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0; }
-.spec-tag { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); color: #c4b5fd; font-size: 0.72rem; padding: 0.2rem 0.5rem; border-radius: 4px; }
-.price-note { font-size: 0.72rem; color: #9ca3af; margin-top: 0.3rem; }
-.btn-ver-proveedor { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; background: transparent; color: #6b7280; border: 1px solid #374151; padding: 0.6rem; border-radius: 8px; font-size: 0.8rem; cursor: pointer; font-family: 'Exo 2', sans-serif; margin-top: 0.4rem; transition: all 0.2s; text-align: center; }
-.btn-ver-proveedor:hover { color: #9ca3af; border-color: #6b7280; }
-.stock-badge { display: inline-flex; align-items: center; gap: 0.3rem; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #86efac; font-size: 0.72rem; padding: 0.2rem 0.5rem; border-radius: 4px; margin-top: 0.3rem; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0a4fa8;--blue2:#1565c0;--blue-light:#e3f0ff;--blue-dark:#063380;
+  --white:#fff;--gray:#f4f7fc;--gray2:#e8eef7;--gray3:#c5d5e8;
+  --text:#0d1b2e;--text2:#3a5070;--text3:#6b8aaa;--nav-h:62px;--red:#e53935;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.topbar{background:var(--blue-dark);color:#fff;padding:.4rem 1.5rem;display:flex;justify-content:space-between;font-size:.75rem;flex-wrap:wrap;gap:.5rem}
+.topbar a{color:#90caf9;font-weight:600}
+.nav{background:#fff;box-shadow:0 2px 12px rgba(10,79,168,.12);height:var(--nav-h);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;gap:1.5rem}
+.nav-logo img{height:46px}
+.nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;margin-left:auto}
+.nav-links a{padding:.45rem .8rem;border-radius:5px;font-size:.82rem;font-weight:500;color:var(--text2);transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);background:var(--blue-light)}
+.nav-wa{background:var(--blue)!important;color:#fff!important;font-weight:700!important;border-radius:6px!important}
+.nav-wa:hover{background:var(--blue2)!important}
+
+/* HERO CATEGORIA */
+.cat-hero{background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 60%,#0077b6 100%);padding:3rem 1.5rem;text-align:center;color:#fff}
+.cat-hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.5rem}
+.cat-hero p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:1.5rem}
+.cat-filters{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.filter-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:.45rem 1.1rem;border-radius:20px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.filter-btn:hover,.filter-btn.active{background:#fff;color:var(--blue)}
+
+/* PRODUCTOS */
+.products-section{padding:2.5rem 1.5rem;background:var(--gray)}
+.products-inner{max-width:1300px;margin:0 auto}
+.products-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.products-count{font-size:.85rem;color:var(--text2)}
+.products-count span{font-weight:700;color:var(--blue)}
+.sort-select{border:1.5px solid var(--gray3);border-radius:6px;padding:.45rem .8rem;font-family:'Inter',sans-serif;font-size:.82rem;color:var(--text2);background:#fff;cursor:pointer}
+.sort-select:focus{outline:none;border-color:var(--blue)}
+
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+.prod-card{background:#fff;border:1.5px solid var(--gray2);border-radius:10px;overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
+.prod-card:hover{border-color:#1976d2;box-shadow:0 8px 30px rgba(10,79,168,.15);transform:translateY(-4px)}
+.prod-card[data-cat].hidden{display:none}
+
+.prod-img-wrap{position:relative;height:200px;background:var(--gray);overflow:hidden}
+.prod-img-wrap img{width:100%;height:100%;object-fit:contain;padding:.75rem;transition:transform .4s ease;background:#fff}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.05)}
+.prod-tag{position:absolute;top:.6rem;left:.6rem;font-size:.65rem;font-weight:700;padding:.2rem .55rem;border-radius:3px;text-transform:uppercase;letter-spacing:.5px}
+.tag-gaming{background:#0a4fa8;color:#fff}
+.tag-oficina{background:#059669;color:#fff}
+.tag-oled{background:#7c3aed;color:#fff}
+.tag-curvo{background:#d97706;color:#fff}
+.tag-nuevo{background:var(--red);color:#fff}
+
+.prod-body{padding:1rem 1rem .9rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.prod-brand{font-size:.68rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.8px}
+.prod-name{font-size:.9rem;font-weight:700;line-height:1.3;color:var(--text)}
+.prod-specs{display:flex;flex-wrap:wrap;gap:.3rem;margin:.1rem 0}
+.spec-chip{background:var(--blue-light);color:var(--blue);font-size:.65rem;font-weight:600;padding:.15rem .45rem;border-radius:3px}
+.prod-price-wrap{margin-top:auto;padding-top:.6rem;border-top:1px solid var(--gray2)}
+.prod-price-label{font-size:.68rem;color:var(--text3);margin-bottom:.15rem}
+.prod-price{font-size:1.25rem;font-weight:800;color:var(--blue);line-height:1}
+.prod-price-note{font-size:.65rem;color:var(--text3);margin-top:.2rem}
+.prod-btn{display:block;text-align:center;background:var(--blue);color:#fff;padding:.65rem;border-radius:6px;font-size:.82rem;font-weight:700;margin-top:.75rem;transition:background .2s}
+.prod-btn:hover{background:var(--blue2)}
+
+/* NOTA PRECIOS */
+.price-note-bar{background:var(--blue-light);border:1.5px solid var(--gray3);border-radius:8px;padding:1rem 1.5rem;margin-bottom:1.5rem;font-size:.82rem;color:var(--text2);display:flex;align-items:center;gap:.75rem}
+.price-note-bar strong{color:var(--blue)}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:12px;padding:2.5rem;text-align:center;margin-top:2.5rem;color:#fff}
+.cta-box h3{font-size:1.4rem;font-weight:800;margin-bottom:.5rem}
+.cta-box p{color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-size:.92rem}
+.cta-wa{display:inline-flex;align-items:center;gap:.5rem;background:#25d366;color:#fff;padding:.85rem 2rem;border-radius:7px;font-weight:700;font-size:.95rem;transition:all .2s}
+.cta-wa:hover{background:#1ebe5d;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:#0d1b2e;color:rgba(255,255,255,.6);padding:2rem 1.5rem;margin-top:0}
+.foot-bottom{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem}
+.foot-bottom a{color:rgba(255,255,255,.5);transition:color .2s}
+.foot-bottom a:hover{color:#fff}
+
+/* WA */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;background:#25d366;color:#fff;border-radius:50px;padding:.7rem 1.3rem;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.88rem;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:all .2s}
+.wa-float:hover{transform:translateY(-3px)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.prod-grid{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}}
+@media(max-width:480px){.prod-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="navbar" id="navbar">
-  <div class="nav-container">
-    <div class="nav-logo">
-      <a href="../index.html" style="display:flex;align-items:center;gap:0.6rem;">
-        <div class="logo-icon">S</div>
-        <div class="logo-text"><span class="logo-name">SEBINOR</span><span class="logo-slogan">25 años con vos</span></div>
-      </a>
-    </div>
-    <button class="nav-toggle" id="navToggle">☰</button>
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="../index.html" class="nav-link">Inicio</a></li>
-      <li><a href="outlet.html" class="nav-link">Outlet</a></li>
-      <li><a href="equipos.html" class="nav-link">Equipos Nuevos</a></li>
-      <li><a href="impresion3d.html" class="nav-link">Impresión 3D</a></li>
-      <li><a href="estudio.html" class="nav-link">Estudio</a></li>
-      <li><a href="paginasweb.html" class="nav-link">Páginas Web</a></li>
-      <li><a href="servicio.html" class="nav-link">Servicio Técnico</a></li>
-      <li><a href="monitores.html" class="nav-link active">Monitores</a></li>
-      <li><a href="../index.html#contacto" class="nav-link">Contacto</a></li>
-      <li><a href="https://wa.me/5491526106011" class="btn-solicitar" target="_blank">SOLICITAR TÉCNICO</a></li>
+
+<div class="topbar">
+  <span>📍 Av. del Libertador 7615, Moreno &nbsp;|&nbsp; ⏰ Mar–Sáb 9:30–16:30 · Dom 9:30–13:00</span>
+  <span>📞 <a href="tel:+5491526106011">+54 9 15 2610-6011</a></span>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="../index.html"><img src="../img/logo.png" alt="SEBINOR"></a></div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../index.html#categorias">Servicios</a></li>
+      <li><a href="monitores.html" class="active">Monitores</a></li>
+      <li><a href="../index.html#contacto">Contacto</a></li>
+      <li><a href="https://wa.me/5491526106011" class="nav-wa" target="_blank">💬 WhatsApp</a></li>
     </ul>
   </div>
 </nav>
 
-<div class="page-hero">
-  <div class="page-badge" style="background:#2563eb;">🖥️ MONITORES</div>
-  <h1 class="page-title">Monitores</h1>
-  <p class="page-sub">Los mejores monitores gaming y de oficina. Stock disponible con garantía.</p>
+<div class="cat-hero">
+  <h1>🖥️ Monitores</h1>
+  <p>Gaming, oficina y profesional. Stock disponible con garantía.</p>
+  <div class="cat-filters">
+    <button class="filter-btn active" data-filter="todos">Todos</button>
+    <button class="filter-btn" data-filter="fhd">Full HD</button>
+    <button class="filter-btn" data-filter="qhd">QHD 1440p</button>
+    <button class="filter-btn" data-filter="gaming">Gaming</button>
+    <button class="filter-btn" data-filter="oficina">Oficina</button>
+    <button class="filter-btn" data-filter="oled">OLED</button>
+    <button class="filter-btn" data-filter="curvo">Curvo</button>
+  </div>
 </div>
 
-<div class="filter-bar">
-  <button class="filter-btn active" data-filter="todos">Todos</button>
-  <button class="filter-btn" data-filter="fhd">Full HD</button>
-  <button class="filter-btn" data-filter="qhd">QHD 2K</button>
-  <button class="filter-btn" data-filter="gaming">Gaming</button>
-  <button class="filter-btn" data-filter="curvo">Curvo</button>
-</div>
+<section class="products-section">
+  <div class="products-inner">
 
-<div class="products-grid" id="monitores-grid">
-
-  <div class="product-card" data-cat="fhd">
-    <div class="product-img" style="background:#0f172a;display:flex;align-items:center;justify-content:center;font-size:4rem;">🖥️</div>
-    <div class="product-badges"><span class="badge-cat" style="background:#2563eb;">Monitor</span></div>
-    <div class="product-body">
-      <div class="product-title">Monitor Hikvision DS-D5024F2-AV2 23.8"</div>
-      <div class="monitor-specs">
-        <span class="spec-tag">23.8"</span>
-        <span class="spec-tag">FHD 1080p</span>
-        <span class="spec-tag">VA</span>
-        <span class="spec-tag">100Hz</span>
-        <span class="spec-tag">VESA</span>
-      </div>
-      <div class="product-price">$ 106.637</div>
-      <div class="price-note">Precio de lista. Consultá financiación.</div>
-      <div class="stock-badge">✓ Disponible</div>
-      <a href="https://wa.me/5491526106011?text=Consulta%20por%20Monitor%20Hikvision%2023.8%22%20FHD%20100Hz" class="btn-comprar" target="_blank">🛒 CONSULTAR</a>
-      <a href="https://compragamer.com/producto/Monitor_Hikvision_DS_D5024F2_AV2_23_8_FHD_VA_100Hz_Vesa_17533" class="btn-ver-proveedor" target="_blank">Ver ficha técnica ↗</a>
+    <div class="price-note-bar">
+      ℹ️ <span>Los precios incluyen el servicio de <strong>asesoramiento y garantía SEBINOR</strong>. Precios de referencia actualizados al 7/6/2026. Consultá disponibilidad por WhatsApp.</span>
     </div>
-  </div>
 
-  <div class="product-card" data-cat="qhd gaming">
-    <div class="product-img" style="background:#0f172a;display:flex;align-items:center;justify-content:center;font-size:4rem;">🖥️</div>
-    <div class="product-badges"><span class="badge-cat" style="background:#2563eb;">Monitor</span><span class="badge-dest">★ Destacado</span></div>
-    <div class="product-body">
-      <div class="product-title">Monitor Gamer Acer Nitro KG271U 27" QHD</div>
-      <div class="monitor-specs">
-        <span class="spec-tag">27"</span>
-        <span class="spec-tag">QHD 1440p</span>
-        <span class="spec-tag">IPS</span>
-        <span class="spec-tag">180Hz</span>
-        <span class="spec-tag">0.5ms</span>
-        <span class="spec-tag">AMD FreeSync</span>
-      </div>
-      <div class="product-price">$ 230.310</div>
-      <div class="price-note">Precio de lista. Consultá financiación.</div>
-      <div class="stock-badge">✓ Disponible</div>
-      <a href="https://wa.me/5491526106011?text=Consulta%20por%20Acer%20Nitro%20KG271U%2027%22%20QHD%20180Hz" class="btn-comprar" target="_blank">🛒 CONSULTAR</a>
-      <a href="https://compragamer.com/producto/Monitor_Gamer_Acer_Nitro_KG271U_N3biip_27_QHD_IPS_180Hz_0_5ms_AMD_FreeSync_17819" class="btn-ver-proveedor" target="_blank">Ver ficha técnica ↗</a>
+    <div class="products-header">
+      <span class="products-count">Mostrando <span id="count">12</span> monitores</span>
+      <select class="sort-select" id="sortSelect">
+        <option value="default">Ordenar por...</option>
+        <option value="precio-asc">Menor precio</option>
+        <option value="precio-desc">Mayor precio</option>
+      </select>
     </div>
-  </div>
 
-  <div class="product-card" data-cat="fhd gaming">
-    <div class="product-img" style="background:#0f172a;display:flex;align-items:center;justify-content:center;font-size:4rem;">🖥️</div>
-    <div class="product-badges"><span class="badge-cat" style="background:#7c3aed;">Gaming</span><span class="badge-dest">★ Destacado</span></div>
-    <div class="product-body">
-      <div class="product-title">Monitor Gamer Acer Predator XB253Q 24.5" 300Hz</div>
-      <div class="monitor-specs">
-        <span class="spec-tag">24.5"</span>
-        <span class="spec-tag">FHD 1080p</span>
-        <span class="spec-tag">IPS</span>
-        <span class="spec-tag">300Hz</span>
-        <span class="spec-tag">FreeSync</span>
+    <div class="prod-grid" id="prodGrid">
+
+      <!-- AsRock CL25FFA -->
+      <div class="prod-card" data-cat="fhd gaming" data-precio="211680">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_47306_Monitor_Gamer_AsRock_Challenger_CL25FFA_24_5_IPS_FHD_120Hz_Flicker_Free_Technology_ef2dd4d4-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="AsRock Challenger CL25FFA">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">AsRock</div>
+          <div class="prod-name">Challenger CL25FFA 24.5"</div>
+          <div class="prod-specs">
+            <span class="spec-chip">24.5"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">120Hz</span>
+            <span class="spec-chip">1ms</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 211.680</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20AsRock%20Challenger%20CL25FFA%2024.5%22" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
       </div>
-      <div class="product-price">$ 348.030</div>
-      <div class="price-note">Precio de lista. Consultá financiación.</div>
-      <div class="stock-badge">✓ Disponible</div>
-      <a href="https://wa.me/5491526106011?text=Consulta%20por%20Acer%20Predator%20XB253Q%20300Hz" class="btn-comprar" target="_blank">🛒 CONSULTAR</a>
-      <a href="https://compragamer.com/producto/Monitor_Gamer_Acer_Predator_XB253Q_Fbmiiprx_24_5_FHD_IPS_300Hz_Freesync_17822" class="btn-ver-proveedor" target="_blank">Ver ficha técnica ↗</a>
-    </div>
-  </div>
 
-  <div class="product-card" data-cat="qhd curvo gaming">
-    <div class="product-img" style="background:#0f172a;display:flex;align-items:center;justify-content:center;font-size:4rem;">🖥️</div>
-    <div class="product-badges"><span class="badge-cat" style="background:#2563eb;">Monitor</span><span class="badge-dest">★ Destacado</span></div>
-    <div class="product-body">
-      <div class="product-title">ViewSonic VX2718-2KPC-MHD 27" Curvo QHD</div>
-      <div class="monitor-specs">
-        <span class="spec-tag">27"</span>
-        <span class="spec-tag">QHD 1440p</span>
-        <span class="spec-tag">VA</span>
-        <span class="spec-tag">180Hz</span>
-        <span class="spec-tag">Curvo 1500R</span>
-        <span class="spec-tag">Parlantes</span>
-        <span class="spec-tag">FreeSync Premium</span>
+      <!-- AsRock CL27FFA -->
+      <div class="prod-card" data-cat="fhd gaming" data-precio="238500">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_47307_Monitor_Gamer_AsRock_Challenger_CL27FFA_27__IPS_FHD_120Hz_Flicker_Free_Technology_ef2dd4d4-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="AsRock Challenger CL27FFA">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">AsRock</div>
+          <div class="prod-name">Challenger CL27FFA 27"</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">120Hz</span>
+            <span class="spec-chip">1ms</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 238.500</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20AsRock%20Challenger%20CL27FFA%2027%22" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
       </div>
-      <div class="product-price">$ 268.785</div>
-      <div class="price-note">Precio de lista. Consultá financiación.</div>
-      <div class="stock-badge">✓ Disponible</div>
-      <a href="https://wa.me/5491526106011?text=Consulta%20por%20ViewSonic%20VX2718%2027%22%20Curvo%20QHD%20180Hz" class="btn-comprar" target="_blank">🛒 CONSULTAR</a>
-      <a href="https://compragamer.com/producto/Monitor_Gamer_ViewSonic_VX2718_2KPC_MHD_27_Curvo_QHD_1440p_VA_180Hz_1500R_FreeSync_Premium_Pro_Parlantes_Internos_18330" class="btn-ver-proveedor" target="_blank">Ver ficha técnica ↗</a>
+
+      <!-- AsRock PG27FFT1A -->
+      <div class="prod-card" data-cat="fhd gaming" data-precio="321540">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_49001_Monitor_Gamer_AsRock_Phantom_PG27FFT1A_27_FHD_IPS_180Hz_FreeSync_a1b2c3d4-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="AsRock Phantom PG27FFT1A">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">AsRock</div>
+          <div class="prod-name">Phantom PG27FFT1A 27" 180Hz</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">180Hz</span>
+            <span class="spec-chip">FreeSync</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 321.540</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20AsRock%20Phantom%20PG27FFT1A" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- AsRock PG27FRS1A Curvo -->
+      <div class="prod-card" data-cat="fhd gaming curvo" data-precio="300768">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_49002_Monitor_Gamer_AsRock_Phantom_PG27FRS1A_27_Curvo_FHD_VA_280Hz_FreeSync_b2c3d4e5-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="AsRock Phantom PG27FRS1A Curvo">
+          <span class="prod-tag tag-curvo">Curvo</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">AsRock</div>
+          <div class="prod-name">Phantom PG27FRS1A 27" Curvo 280Hz</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27" Curvo</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">VA</span>
+            <span class="spec-chip">280Hz</span>
+            <span class="spec-chip">FreeSync</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 300.768</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20AsRock%20Phantom%20PG27FRS1A%20Curvo" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung Odyssey G4 25" -->
+      <div class="prod-card" data-cat="fhd gaming" data-precio="443580">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_52841_Monitor_Gamer_Samsung_Odyssey_G4_S25HG400EL_25_FHD_300Hz_f2a3b28c-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung Odyssey G4 25">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">Odyssey G4 S25HG400EL 25" 300Hz</div>
+          <div class="prod-specs">
+            <span class="spec-chip">25"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">300Hz</span>
+            <span class="spec-chip">G-SYNC</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 443.580</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20Odyssey%20G4%2025%22%20300Hz" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung Odyssey G4 27" -->
+      <div class="prod-card" data-cat="fhd gaming" data-precio="488700">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_52840_Monitor_Gamer_Samsung_Odyssey_G4_27__FHD_1080p_IPS_300Hz_1ms_G-SYNC_FreeSync_Premium_f2a3b28c-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung Odyssey G4 27">
+          <span class="prod-tag tag-nuevo">Destacado</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">Odyssey G4 27" FHD 300Hz G-SYNC</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">300Hz</span>
+            <span class="spec-chip">1ms</span>
+            <span class="spec-chip">G-SYNC</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 488.700</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20Odyssey%20G4%2027%22%20300Hz" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- AsRock PG27QFT1B QHD -->
+      <div class="prod-card" data-cat="qhd gaming" data-precio="330264">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_49003_Monitor_Gamer_AsRock_Phantom_PG27QFT1B_27_QHD_IPS_180Hz_FreeSync_c3d4e5f6-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="AsRock Phantom PG27QFT1B QHD">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">AsRock</div>
+          <div class="prod-name">Phantom PG27QFT1B 27" QHD 180Hz</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">QHD 1440p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">180Hz</span>
+            <span class="spec-chip">1ms</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 330.264</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20AsRock%20Phantom%20PG27QFT1B%20QHD" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung Odyssey G5 27" QHD -->
+      <div class="prod-card" data-cat="qhd gaming" data-precio="460632">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_53566_Monitor_Gamer_Samsung_Odyssey_G5_S27FG500EL_27__QHD_IPS_180Hz_HAS_LS27FG500ELXZB_58937f79-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung Odyssey G5 27 QHD">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">Odyssey G5 S27FG500EL 27" QHD</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">QHD 1440p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">180Hz</span>
+            <span class="spec-chip">Base HAS</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 460.632</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20Odyssey%20G5%2027%22%20QHD" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung Odyssey G5 32" QHD -->
+      <div class="prod-card" data-cat="qhd gaming" data-precio="676524">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_53567_Monitor_Gamer_Samsung_Odyssey_G5_S32FG500EL_32_QHD_IPS_180Hz_HAS_LS32FG500ELXZB_58937f79-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung Odyssey G5 32 QHD">
+          <span class="prod-tag tag-gaming">Gaming</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">Odyssey G5 S32FG500EL 32" QHD</div>
+          <div class="prod-specs">
+            <span class="spec-chip">32"</span>
+            <span class="spec-chip">QHD 1440p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">180Hz</span>
+            <span class="spec-chip">Base HAS</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 676.524</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20Odyssey%20G5%2032%22%20QHD" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung S27D300GAL Oficina -->
+      <div class="prod-card" data-cat="fhd oficina" data-precio="248280">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_53570_Monitor_Samsung_S27D300GAL_27__FHD_IPS_100Hz_LS27D300GALXZB_1502eeff-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung S27D300GAL">
+          <span class="prod-tag tag-oficina">Oficina</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">S27D300GAL 27" FHD Oficina</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">100Hz</span>
+            <span class="spec-chip">Trabajo</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 248.280</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20S27D300GAL" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung S24F320GAL Oficina -->
+      <div class="prod-card" data-cat="fhd oficina" data-precio="214140">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_53571_Monitor_Samsung_S24F320GAL_24_FHD_IPS_120Hz_1502eeff-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung S24F320GAL">
+          <span class="prod-tag tag-oficina">Oficina</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">S24F320GAL 24" FHD Oficina</div>
+          <div class="prod-specs">
+            <span class="spec-chip">24"</span>
+            <span class="spec-chip">FHD 1080p</span>
+            <span class="spec-chip">IPS</span>
+            <span class="spec-chip">120Hz</span>
+            <span class="spec-chip">Trabajo</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 214.140</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20S24F320GAL" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Samsung Odyssey OLED G6 -->
+      <div class="prod-card" data-cat="qhd gaming oled" data-precio="1529568">
+        <div class="prod-img-wrap">
+          <img src="https://imagenes.compragamer.com/productos/compragamer_Imganen_general_53568_Monitor_Gamer_Samsung_Odyssey_OLED_G6_S27HG610SL_27_QHD_240Hz_a1b2c3d4-grn.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&q=80'"
+               alt="Samsung Odyssey OLED G6">
+          <span class="prod-tag tag-oled">OLED</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-brand">Samsung</div>
+          <div class="prod-name">Odyssey OLED G6 27" QHD 240Hz</div>
+          <div class="prod-specs">
+            <span class="spec-chip">27"</span>
+            <span class="spec-chip">QHD 1440p</span>
+            <span class="spec-chip">OLED</span>
+            <span class="spec-chip">240Hz</span>
+            <span class="spec-chip">Premium</span>
+          </div>
+          <div class="prod-price-wrap">
+            <div class="prod-price-label">Precio de lista</div>
+            <div class="prod-price">$ 1.529.568</div>
+            <div class="prod-price-note">Consultá financiación disponible</div>
+          </div>
+          <a href="https://wa.me/5491526106011?text=Consulta%20Monitor%20Samsung%20Odyssey%20OLED%20G6%2027%22" class="prod-btn" target="_blank">Consultar →</a>
+        </div>
+      </div>
+
     </div>
+
+    <div class="cta-box">
+      <h3>¿No encontrás lo que buscás?</h3>
+      <p>Tenemos acceso a todo el catálogo. Consultanos por cualquier modelo y te conseguimos el mejor precio.</p>
+      <a href="https://wa.me/5491526106011?text=Consulta%20por%20monitores" class="cta-wa" target="_blank">💬 Consultar por WhatsApp</a>
+    </div>
+
   </div>
+</section>
 
-</div>
+<footer>
+  <div class="foot-bottom">
+    <span>© 2026 SEBINOR Computación — Av. del Libertador 7615, Moreno</span>
+    <div style="display:flex;gap:1.5rem"><a href="../index.html">Inicio</a><a href="#">Términos</a></div>
+  </div>
+</footer>
 
-<div class="cta-box">
-  <div class="cta-icon">🖥️</div>
-  <h3>¿No encontrás el monitor que buscás?</h3>
-  <p>Consultanos — podemos conseguir cualquier modelo. Envíos a todo el país.</p>
-  <a href="https://wa.me/5491526106011?text=Consulta%20por%20monitores" class="btn-cta" target="_blank">💬 Consultar por WhatsApp</a>
-</div>
+<a href="https://wa.me/5491526106011" class="wa-float" target="_blank">💬 Chateá con nosotros</a>
 
-<a href="https://wa.me/5491526106011" class="whatsapp-float" target="_blank"><span class="wa-icon">💬</span> Chateá con nosotros</a>
-<script src="../js/main.js"></script>
+<script>
+// Filtros
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    const cards = document.querySelectorAll('.prod-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const cats = card.dataset.cat || '';
+      if (filter === 'todos' || cats.includes(filter)) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('count').textContent = visible;
+  });
+});
+
+// Ordenar
+document.getElementById('sortSelect').addEventListener('change', function() {
+  const grid = document.getElementById('prodGrid');
+  const cards = Array.from(grid.querySelectorAll('.prod-card'));
+  if (this.value === 'precio-asc') {
+    cards.sort((a,b) => parseInt(a.dataset.precio) - parseInt(b.dataset.precio));
+  } else if (this.value === 'precio-desc') {
+    cards.sort((a,b) => parseInt(b.dataset.precio) - parseInt(a.dataset.precio));
+  }
+  cards.forEach(c => grid.appendChild(c));
+});
+</script>
 </body>
 </html>
