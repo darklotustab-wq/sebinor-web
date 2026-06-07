@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEBINOR Computación - 25 años con vos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">
+        <span class="logo-name">SEBINOR</span>
+        <span class="logo-slogan">25 años con vos</span>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle">☰</button>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+      <li><a href="pages/outlet.html" class="nav-link">Outlet</a></li>
+      <li><a href="pages/equipos.html" class="nav-link">Equipos Nuevos</a></li>
+      <li><a href="pages/impresion3d.html" class="nav-link">Impresión 3D</a></li>
+      <li><a href="pages/estudio.html" class="nav-link">Estudio</a></li>
+      <li><a href="pages/paginasweb.html" class="nav-link">Páginas Web</a></li>
+      <li><a href="pages/servicio.html" class="nav-link">Servicio Técnico</a></li>
+      <li><a href="pages/monitores.html" class="nav-link">Monitores</a></li>
+      <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      <li><a href="https://wa.me/5491526106011" class="btn-solicitar" target="_blank">SOLICITAR TÉCNICO</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="inicio">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background: radial-gradient(ellipse at center, #0a1628 0%, #000 70%);">
+      <div class="hero-content">
+        <div class="hero-logo-big">
+          <div class="logo-badge">
+            <span class="badge-name">SEBINOR</span>
+            <span class="badge-sub">COMPUTACIÓN</span>
+            <span class="badge-year">EST. 2002</span>
+          </div>
+        </div>
+        <p class="hero-slogan">25 años con vos</p>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(135deg, #0d0d1a 0%, #1a0533 50%, #000 100%);">
+      <div class="hero-content">
+        <h2 class="slide-title">Servicio Técnico</h2>
+        <p class="slide-sub">Reparación profesional con diagnóstico gratuito</p>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(135deg, #000 0%, #001a33 100%);">
+      <div class="hero-content">
+        <h2 class="slide-title">PC Gamer a Medida</h2>
+        <p class="slide-sub">Armamos tu equipo con los mejores componentes</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+  <button class="hero-arrow prev" onclick="changeSlide(-1)">‹</button>
+  <button class="hero-arrow next" onclick="changeSlide(1)">›</button>
+</section>
+
+<!-- CATEGORÍAS -->
+<section class="categories">
+  <p class="categories-title">Tu experto en tecnología desde el diagnóstico hasta la solución</p>
+  <div class="cat-grid">
+    <a href="pages/equipos.html" class="cat-btn cat-pc">PC Nuevas</a>
+    <a href="#" class="cat-btn cat-consolas">Consolas</a>
+    <a href="#" class="cat-btn cat-electronica">Electrónica</a>
+    <a href="pages/impresion3d.html" class="cat-btn cat-3d">Impresión 3D</a>
+    <a href="pages/estudio.html" class="cat-btn cat-estudio">Estudio</a>
+    <a href="pages/paginasweb.html" class="cat-btn cat-web">Páginas Web</a>
+    <a href="pages/outlet.html" class="cat-btn cat-outlet">Outlet</a>
+    <a href="pages/servicio.html" class="cat-btn cat-servicio">Servicio Técnico</a>
+  </div>
+</section>
+
+<!-- BANNER ELECTRÓNICA DEL HOGAR -->
+<section class="banner-hogar">
+  <div class="banner-content">
+    <div class="banner-icon">🏠</div>
+    <div class="banner-text">
+      <span class="banner-small">VISITÁ NUESTRA TIENDA</span>
+      <h3 class="banner-title">Electrónica del Hogar</h3>
+      <p class="banner-desc">Heladeras, lavarropas, cocinas, microondas y mucho más</p>
+    </div>
+    <a href="#" class="banner-btn">Ir a la tienda ↗</a>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="social-proof">
+  <a href="#" class="btn-tiktok">▶ Ver en TikTok</a>
+  <a href="#" class="btn-review">⭐ Dejá tu reseña</a>
+  <div class="stars">★★★★☆ <span class="rating">4.7</span></div>
+  <p class="thanks">Gracias por el apoyo!</p>
+</div>
+
+<!-- SERVICIOS DESTACADOS -->
+<section class="services" id="servicios">
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Servicio Técnico</h3>
+      <p>Reparación profesional de computadoras, notebooks, consolas y dispositivos electrónicos con diagnóstico gratuito.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <h3>Armado de PC</h3>
+      <p>Diseñamos tu PC gaming o de trabajo a medida, con los mejores componentes y garantía extendida.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎮</div>
+      <h3>Venta de Insumos</h3>
+      <p>Componentes, periféricos y accesorios de las mejores marcas del mercado.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🥽</div>
+      <h3>Realidad Virtual</h3>
+      <p>Distribuidores oficiales MetaQuest. Experimentá el futuro de la tecnología inmersiva.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section" id="contacto">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-sub">Estamos para ayudarte. Escribinos o visitanos en nuestra tienda</p>
+      <div class="contact-card">
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div>
+            <div class="contact-label">Teléfono / WhatsApp</div>
+            <div class="contact-value">+54 9 15 2610-6011</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">sebinorcomputacion@yahoo.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div class="contact-label">Dirección</div>
+            <div class="contact-value">Av. Libertador 7615</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🕐</span>
+          <div>
+            <div class="contact-label">Horarios</div>
+            <div class="contact-value">Martes a Sábado: 9:30 - 16:30 (corrido)<br>Domingos: 9:30 - 13:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews">
+        <h3>Lo que dicen nuestros clientes</h3>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Excelente servicio. Me armaron la PC de mis sueños a un precio justo."</p>
+          <span>- Martín G.</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"El técnico vino a casa y resolvió todo en una hora. Super profesionales."</p>
+          <span>- Laura P.</span>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Compré mi MetaQuest acá. Mejor precio y atención del mercado."</p>
+          <span>- Diego R.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrapper">
+      <h3>✉️ Envianos un Mensaje</h3>
+      <p>Responderemos a la brevedad posible</p>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Nombre *</label>
+          <input type="text" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Asunto</label>
+          <input type="text" placeholder="Asunto de tu consulta">
+        </div>
+        <div class="form-group">
+          <label>Mensaje *</label>
+          <textarea placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+        <button class="btn-enviar">✈️ ENVIAR MENSAJE</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="logo-icon">S</div>
+        <span class="logo-name">SEBINOR</span>
+      </div>
+      <p class="footer-slogan">25 años con vos</p>
+      <p class="footer-desc">Tu experto en tecnología desde el diagnóstico hasta la solución. Servicio técnico profesional, venta de equipos y atención personalizada.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Enlaces Rápidos</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="pages/outlet.html">Outlet</a></li>
+        <li><a href="pages/equipos.html">Equipos Nuevos</a></li>
+        <li><a href="pages/servicio.html">Servicio Técnico</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contacto</h4>
+      <p>📞 +54 9 15 2610-6011</p>
+      <p>✉️ sebinorcomputacion@yahoo.com</p>
+      <p>📍 Av. Libertador 7615</p>
+    </div>
+    <div class="footer-hours">
+      <h4>Horarios</h4>
+      <p>Martes a Sábado: 9:30 - 16:30 (corrido)</p>
+      <p>Domingos: 9:30 - 13:00</p>
+      <h4 style="margin-top:1rem;">Seguinos</h4>
+      <div class="social-links">
+        <a href="#" class="social-btn">TikTok</a>
+        <a href="https://wa.me/5491526106011" class="social-btn">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SEBINOR Computación. Todos los derechos reservados.</span>
+    <div>
+      <a href="#">Términos y Condiciones</a>
+      <a href="#">Política de Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5491526106011" class="whatsapp-float" target="_blank">
+  <span class="wa-icon">💬</span> Chateá con nosotros
+</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
