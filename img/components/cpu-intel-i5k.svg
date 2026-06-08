@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0068B5"/>
+      <stop offset="100%" style="stop-color:#00182a"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+  
+  <!-- Chip CPU realista -->
+  <rect x="140" y="50" width="120" height="120" rx="8" fill="url(#chip)" stroke="#444" stroke-width="2"/>
+  <!-- Pines del chip -->
+  <rect x="145" y="168" width="3" height="8" fill="#888"/><rect x="153" y="168" width="3" height="8" fill="#888"/><rect x="161" y="168" width="3" height="8" fill="#888"/><rect x="169" y="168" width="3" height="8" fill="#888"/><rect x="177" y="168" width="3" height="8" fill="#888"/><rect x="185" y="168" width="3" height="8" fill="#888"/><rect x="193" y="168" width="3" height="8" fill="#888"/><rect x="201" y="168" width="3" height="8" fill="#888"/><rect x="209" y="168" width="3" height="8" fill="#888"/><rect x="217" y="168" width="3" height="8" fill="#888"/><rect x="225" y="168" width="3" height="8" fill="#888"/><rect x="233" y="168" width="3" height="8" fill="#888"/><rect x="241" y="168" width="3" height="8" fill="#888"/><rect x="249" y="168" width="3" height="8" fill="#888"/>
+  <rect x="145" y="42" width="3" height="8" fill="#888"/><rect x="153" y="42" width="3" height="8" fill="#888"/><rect x="161" y="42" width="3" height="8" fill="#888"/><rect x="169" y="42" width="3" height="8" fill="#888"/><rect x="177" y="42" width="3" height="8" fill="#888"/><rect x="185" y="42" width="3" height="8" fill="#888"/><rect x="193" y="42" width="3" height="8" fill="#888"/><rect x="201" y="42" width="3" height="8" fill="#888"/><rect x="209" y="42" width="3" height="8" fill="#888"/><rect x="217" y="42" width="3" height="8" fill="#888"/><rect x="225" y="42" width="3" height="8" fill="#888"/><rect x="233" y="42" width="3" height="8" fill="#888"/><rect x="241" y="42" width="3" height="8" fill="#888"/><rect x="249" y="42" width="3" height="8" fill="#888"/>
+  <rect x="132" y="55" width="8" height="3" fill="#888"/><rect x="132" y="63" width="8" height="3" fill="#888"/><rect x="132" y="71" width="8" height="3" fill="#888"/><rect x="132" y="79" width="8" height="3" fill="#888"/><rect x="132" y="87" width="8" height="3" fill="#888"/><rect x="132" y="95" width="8" height="3" fill="#888"/><rect x="132" y="103" width="8" height="3" fill="#888"/><rect x="132" y="111" width="8" height="3" fill="#888"/><rect x="132" y="119" width="8" height="3" fill="#888"/><rect x="132" y="127" width="8" height="3" fill="#888"/><rect x="132" y="135" width="8" height="3" fill="#888"/><rect x="132" y="143" width="8" height="3" fill="#888"/><rect x="132" y="151" width="8" height="3" fill="#888"/><rect x="132" y="159" width="8" height="3" fill="#888"/>
+  <rect x="260" y="55" width="8" height="3" fill="#888"/><rect x="260" y="63" width="8" height="3" fill="#888"/><rect x="260" y="71" width="8" height="3" fill="#888"/><rect x="260" y="79" width="8" height="3" fill="#888"/><rect x="260" y="87" width="8" height="3" fill="#888"/><rect x="260" y="95" width="8" height="3" fill="#888"/><rect x="260" y="103" width="8" height="3" fill="#888"/><rect x="260" y="111" width="8" height="3" fill="#888"/><rect x="260" y="119" width="8" height="3" fill="#888"/><rect x="260" y="127" width="8" height="3" fill="#888"/><rect x="260" y="135" width="8" height="3" fill="#888"/><rect x="260" y="143" width="8" height="3" fill="#888"/><rect x="260" y="151" width="8" height="3" fill="#888"/><rect x="260" y="159" width="8" height="3" fill="#888"/>
+  <!-- Superficie del chip -->
+  <rect x="152" y="62" width="96" height="96" rx="4" fill="#111"/>
+  <!-- IHS del procesador -->
+  <rect x="158" y="68" width="84" height="84" rx="3" fill="#2a2a2a"/>
+  <rect x="162" y="72" width="76" height="76" rx="2" fill="#1e1e1e"/>
+  <!-- Logo en el chip -->
+  <text x="200" y="118" font-family="Arial Black" font-size="14" font-weight="900" fill="#0068B5" text-anchor="middle" dominant-baseline="middle">Intel</text>
+  <text x="200" y="135" font-family="Arial" font-size="9" fill="#666" text-anchor="middle">PROCESSOR</text>
+  
+  <!-- Franja de color del fabricante -->
+  <rect x="0" y="0" width="400" height="8" fill="#0068B5" opacity="0.9"/>
+  <rect x="0" y="292" width="400" height="8" fill="#0068B5" opacity="0.9"/>
+  
+  <!-- Texto del producto -->
+  <text x="200" y="210" font-family="Arial Black" font-size="20" font-weight="900" fill="#ffffff" text-anchor="middle">Core i5-13600K</text>
+  <text x="200" y="235" font-family="Arial" font-size="12" fill="#ffffff" text-anchor="middle" opacity="0.8">14C · 3.5GHz · LGA1700</text>
+  <text x="200" y="258" font-family="Arial" font-size="11" fill="#0068B5" text-anchor="middle" font-weight="bold">Intel</text>
+</svg>
