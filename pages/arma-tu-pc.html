@@ -59,22 +59,38 @@ a{text-decoration:none;color:inherit}
 .search-wrap::before{content:'🔍';position:absolute;left:.8rem;top:50%;transform:translateY(-50%);font-size:.82rem;pointer-events:none}
 .search-bar:focus{outline:none;border-color:var(--blue)}
 
-/* COMPONENT CARDS */
-.comp-grid{display:flex;flex-direction:column;gap:.6rem}
-.comp-card{background:#fff;border:1.5px solid var(--gray2);border-radius:8px;padding:1rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:all .2s;position:relative}
-.comp-card:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(10,79,168,.1)}
-.comp-card.selected{border-color:var(--blue);background:var(--blue-light);box-shadow:0 0 0 2px var(--blue)}
-.comp-card.selected::after{content:'✓';position:absolute;top:.6rem;right:.8rem;background:var(--blue);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700}
-.comp-img{width:70px;height:70px;object-fit:contain;flex-shrink:0;border-radius:6px;background:var(--gray);padding:.3rem}
-.comp-info{flex:1;min-width:0}
+/* FLOW BANNER */
+.flow-banner{background:#fff;border-bottom:1.5px solid var(--gray2);padding:.75rem 1.5rem;overflow-x:auto}
+.flow-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:0;min-width:600px}
+.flow-item{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex:1;position:relative;cursor:pointer;padding:.4rem .2rem;border-radius:8px;transition:background .2s}
+.flow-item:hover{background:var(--blue-light)}
+.flow-img-wrap{width:52px;height:52px;border-radius:8px;overflow:hidden;border:2px solid var(--gray2);background:var(--gray);transition:all .3s;position:relative}
+.flow-img-wrap img{width:100%;height:100%;object-fit:cover}
+.flow-img-wrap.empty{display:flex;align-items:center;justify-content:center;font-size:1.2rem;opacity:.4}
+.flow-img-wrap.filled{border-color:var(--blue);box-shadow:0 0 0 2px rgba(10,79,168,.2)}
+.flow-img-wrap.filled::after{content:'✓';position:absolute;bottom:-2px;right:-2px;background:var(--green);color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700}
+.flow-label{font-size:.6rem;font-weight:600;color:var(--text3);text-align:center;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.flow-label.filled{color:var(--blue)}
+.flow-arrow{color:var(--gray3);font-size:.85rem;flex-shrink:0;margin:0 .1rem;padding-bottom:1rem}
+.flow-item.active-step .flow-img-wrap{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,79,168,.25)}
+.flow-item.active-step .flow-label{color:var(--blue);font-weight:700}
+
+/* COMPONENT CARDS - más grandes */
+.comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.comp-card{background:#fff;border:1.5px solid var(--gray2);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .25s;position:relative;display:flex;flex-direction:column}
+.comp-card:hover{border-color:var(--blue);box-shadow:0 6px 24px rgba(10,79,168,.14);transform:translateY(-3px)}
+.comp-card.selected{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,79,168,.25)}
+.comp-card.selected::before{content:'✓ ELEGIDO';position:absolute;top:.7rem;right:.7rem;background:var(--green);color:#fff;font-size:.65rem;font-weight:800;padding:.25rem .6rem;border-radius:4px;letter-spacing:.5px;z-index:2}
+.comp-img-big{width:100%;height:160px;object-fit:contain;background:linear-gradient(135deg,#f8faff,var(--gray));padding:1rem;transition:transform .4s}
+.comp-card:hover .comp-img-big{transform:scale(1.06)}
+.comp-body{padding:1rem;flex:1;display:flex;flex-direction:column;gap:.4rem;border-top:1px solid var(--gray2)}
 .comp-brand{font-size:.65rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.8px}
-.comp-name{font-size:.88rem;font-weight:700;color:var(--text);line-height:1.3;margin:.15rem 0}
+.comp-name{font-size:.92rem;font-weight:700;color:var(--text);line-height:1.3}
 .comp-specs{font-size:.75rem;color:var(--text2);line-height:1.5}
-.comp-right{text-align:right;flex-shrink:0}
-.comp-price{font-size:1.1rem;font-weight:800;color:var(--blue)}
-.comp-stock{font-size:.68rem;color:var(--green);font-weight:600;margin-top:.2rem}
-.comp-stock.low{color:var(--orange)}
-.btn-select{margin-top:.5rem;background:var(--blue);color:#fff;border:none;padding:.45rem .9rem;border-radius:5px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.comp-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.6rem;border-top:1px solid var(--gray2)}
+.comp-price{font-size:1.15rem;font-weight:800;color:var(--blue)}
+.comp-stock{font-size:.68rem;color:var(--green);font-weight:600}
+.btn-select{background:var(--blue);color:#fff;border:none;padding:.5rem 1.1rem;border-radius:5px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
 .btn-select:hover{background:var(--blue2)}
 .comp-card.selected .btn-select{background:var(--green)}
 
@@ -148,6 +164,56 @@ a{text-decoration:none;color:inherit}
   <p>Elegí cada componente paso a paso. Te armamos el presupuesto al instante y te contactamos para cerrar el mejor precio.</p>
 </div>
 
+<!-- FLOW BANNER VISUAL -->
+<div class="flow-banner">
+  <div class="flow-inner" id="flowBanner">
+    <div class="flow-item active-step" id="flow-0" onclick="goToStep(0)">
+      <div class="flow-img-wrap empty" id="fimg-0">🔲</div>
+      <div class="flow-label" id="flbl-0">CPU</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-1" onclick="goToStep(1)">
+      <div class="flow-img-wrap empty" id="fimg-1">🔲</div>
+      <div class="flow-label" id="flbl-1">Mother</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-2" onclick="goToStep(2)">
+      <div class="flow-img-wrap empty" id="fimg-2">🔲</div>
+      <div class="flow-label" id="flbl-2">RAM</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-3" onclick="goToStep(3)">
+      <div class="flow-img-wrap empty" id="fimg-3">🔲</div>
+      <div class="flow-label" id="flbl-3">Almac.</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-4" onclick="goToStep(4)">
+      <div class="flow-img-wrap empty" id="fimg-4">🔲</div>
+      <div class="flow-label" id="flbl-4">GPU</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-5" onclick="goToStep(5)">
+      <div class="flow-img-wrap empty" id="fimg-5">🔲</div>
+      <div class="flow-label" id="flbl-5">Gabinete</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-6" onclick="goToStep(6)">
+      <div class="flow-img-wrap empty" id="fimg-6">🔲</div>
+      <div class="flow-label" id="flbl-6">Fuente</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-7" onclick="goToStep(7)">
+      <div class="flow-img-wrap empty" id="fimg-7">🔲</div>
+      <div class="flow-label" id="flbl-7">Monitor</div>
+    </div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-item" id="flow-8" onclick="goToStep(8)">
+      <div class="flow-img-wrap empty" id="fimg-8" style="background:var(--blue-light);border-color:var(--blue)">🛒</div>
+      <div class="flow-label" id="flbl-8">Resumen</div>
+    </div>
+  </div>
+</div>
+
 <!-- PROGRESS -->
 <div class="progress-wrap">
   <div class="progress-inner" id="progressBar">
@@ -174,40 +240,40 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar procesador..." oninput="filterCards(this,'step-0')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 3 4100','Procesador AMD','Ryzen 3 · 4 núcleos · 3.8GHz · AM4',120000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=150&q=80" alt="Ryzen 3">
-          <div class="comp-info"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 3 4100</div><div class="comp-specs">4 núcleos · 3.8GHz · Socket AM4</div></div>
-          <div class="comp-right"><div class="comp-price">$ 120.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 3 4100','Procesador AMD','Ryzen 3 · 4 núcleos · 3.8GHz · AM4',120000,'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80" alt="Ryzen 3">
+          <div class="comp-body"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 3 4100</div><div class="comp-specs">4 núcleos · 3.8GHz · Socket AM4</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 120.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 5 5600G','Procesador AMD','Ryzen 5 · 6 núcleos · 3.9GHz · AM4 · Gráficos integrados',195000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=150&q=80" alt="Ryzen 5">
-          <div class="comp-info"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 5 5600G</div><div class="comp-specs">6 núcleos · 3.9GHz · AM4 · Gráficos Radeon integrados</div></div>
-          <div class="comp-right"><div class="comp-price">$ 195.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 5 5600G','Procesador AMD','Ryzen 5 · 6 núcleos · 3.9GHz · AM4 · Gráficos integrados',195000,'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80" alt="Ryzen 5 5600G">
+          <div class="comp-body"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 5 5600G</div><div class="comp-specs">6 núcleos · 3.9GHz · AM4 · Gráficos Radeon integrados</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 195.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 5 5600X','Procesador AMD','Ryzen 5 · 6 núcleos · 3.7GHz · AM4',210000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=150&q=80" alt="Ryzen 5 5600X">
-          <div class="comp-info"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 5 5600X</div><div class="comp-specs">6 núcleos · 3.7GHz · AM4 · Sin gráficos integrados</div></div>
-          <div class="comp-right"><div class="comp-price">$ 210.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 5 5600X','Procesador AMD','Ryzen 5 · 6 núcleos · 3.7GHz · AM4',210000,'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80" alt="Ryzen 5 5600X">
+          <div class="comp-body"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 5 5600X</div><div class="comp-specs">6 núcleos · 3.7GHz · AM4 · Sin gráficos integrados</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 210.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 7 5700X','Procesador AMD','Ryzen 7 · 8 núcleos · 3.4GHz · AM4',285000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=150&q=80" alt="Ryzen 7">
-          <div class="comp-info"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 7 5700X</div><div class="comp-specs">8 núcleos · 3.4GHz · AM4 · Gaming avanzado</div></div>
-          <div class="comp-right"><div class="comp-price">$ 285.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'AMD Ryzen 7 5700X','Procesador AMD','Ryzen 7 · 8 núcleos · 3.4GHz · AM4',285000,'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=400&q=80" alt="Ryzen 7">
+          <div class="comp-body"><div class="comp-brand">AMD</div><div class="comp-name">Ryzen 7 5700X</div><div class="comp-specs">8 núcleos · 3.4GHz · AM4 · Gaming avanzado</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 285.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,0,'Intel Core i5-12400F','Procesador Intel','Core i5 · 6 núcleos · 2.5GHz · LGA1700',220000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Intel i5">
-          <div class="comp-info"><div class="comp-brand">Intel</div><div class="comp-name">Core i5-12400F</div><div class="comp-specs">6 núcleos · 2.5GHz · LGA1700 · Sin gráficos</div></div>
-          <div class="comp-right"><div class="comp-price">$ 220.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'Intel Core i5-12400F','Procesador Intel','Core i5 · 6 núcleos · 2.5GHz · LGA1700',220000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="Intel i5">
+          <div class="comp-body"><div class="comp-brand">Intel</div><div class="comp-name">Core i5-12400F</div><div class="comp-specs">6 núcleos · 2.5GHz · LGA1700 · Sin gráficos</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 220.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,0,'Intel Core i5-13600K','Procesador Intel','Core i5 · 14 núcleos · 3.5GHz · LGA1700',380000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Intel i5-13600K">
-          <div class="comp-info"><div class="comp-brand">Intel</div><div class="comp-name">Core i5-13600K</div><div class="comp-specs">14 núcleos · 3.5GHz · LGA1700 · Alto rendimiento</div></div>
-          <div class="comp-right"><div class="comp-price">$ 380.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'Intel Core i5-13600K','Procesador Intel','Core i5 · 14 núcleos · 3.5GHz · LGA1700',380000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="Intel i5-13600K">
+          <div class="comp-body"><div class="comp-brand">Intel</div><div class="comp-name">Core i5-13600K</div><div class="comp-specs">14 núcleos · 3.5GHz · LGA1700 · Alto rendimiento</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 380.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,0,'Intel Core i7-13700K','Procesador Intel','Core i7 · 16 núcleos · 3.4GHz · LGA1700',580000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Intel i7">
-          <div class="comp-info"><div class="comp-brand">Intel</div><div class="comp-name">Core i7-13700K</div><div class="comp-specs">16 núcleos · 3.4GHz · LGA1700 · Workstation / Gaming premium</div></div>
-          <div class="comp-right"><div class="comp-price">$ 580.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,0,'Intel Core i7-13700K','Procesador Intel','Core i7 · 16 núcleos · 3.4GHz · LGA1700',580000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="Intel i7">
+          <div class="comp-body"><div class="comp-brand">Intel</div><div class="comp-name">Core i7-13700K</div><div class="comp-specs">16 núcleos · 3.4GHz · LGA1700 · Workstation / Gaming premium</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 580.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -224,30 +290,30 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar placa madre..." oninput="filterCards(this,'step-1')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,1,'Gigabyte A520M DS3H','Placa Madre Gigabyte','A520 · AM4 · Micro-ATX · 2x DDR4',85000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Mother A520">
-          <div class="comp-info"><div class="comp-brand">Gigabyte</div><div class="comp-name">A520M DS3H</div><div class="comp-specs">Socket AM4 · DDR4 · 2x DIMM · mATX · AMD</div></div>
-          <div class="comp-right"><div class="comp-price">$ 85.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,1,'Gigabyte A520M DS3H','Placa Madre Gigabyte','A520 · AM4 · Micro-ATX · 2x DDR4',85000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="A520M DS3H">
+          <div class="comp-body"><div class="comp-brand">Gigabyte</div><div class="comp-name">A520M DS3H</div><div class="comp-specs">Socket AM4 · DDR4 · 2x DIMM · mATX · AMD</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 85.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,1,'MSI B450M PRO-VDH','Placa Madre MSI','B450 · AM4 · Micro-ATX · 4x DDR4',105000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Mother B450">
-          <div class="comp-info"><div class="comp-brand">MSI</div><div class="comp-name">B450M PRO-VDH MAX</div><div class="comp-specs">Socket AM4 · DDR4 · 4x DIMM · mATX · AMD</div></div>
-          <div class="comp-right"><div class="comp-price">$ 105.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,1,'MSI B450M PRO-VDH','Placa Madre MSI','B450 · AM4 · Micro-ATX · 4x DDR4',105000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="B450M PRO-VDH MAX">
+          <div class="comp-body"><div class="comp-brand">MSI</div><div class="comp-name">B450M PRO-VDH MAX</div><div class="comp-specs">Socket AM4 · DDR4 · 4x DIMM · mATX · AMD</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 105.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,1,'Gigabyte B550M AORUS Elite','Placa Madre Gigabyte','B550 · AM4 · ATX · 4x DDR4 · PCIe 4.0',145000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Mother B550">
-          <div class="comp-info"><div class="comp-brand">Gigabyte</div><div class="comp-name">B550M AORUS Elite</div><div class="comp-specs">Socket AM4 · DDR4 · 4x DIMM · mATX · PCIe 4.0</div></div>
-          <div class="comp-right"><div class="comp-price">$ 145.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,1,'Gigabyte B550M AORUS Elite','Placa Madre Gigabyte','B550 · AM4 · ATX · 4x DDR4 · PCIe 4.0',145000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="B550M AORUS Elite">
+          <div class="comp-body"><div class="comp-brand">Gigabyte</div><div class="comp-name">B550M AORUS Elite</div><div class="comp-specs">Socket AM4 · DDR4 · 4x DIMM · mATX · PCIe 4.0</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 145.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,1,'MSI B660M PRO-A DDR4','Placa Madre MSI','B660 · LGA1700 · mATX · 4x DDR4 · Intel',130000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Mother B660">
-          <div class="comp-info"><div class="comp-brand">MSI</div><div class="comp-name">B660M PRO-A DDR4</div><div class="comp-specs">Socket LGA1700 · DDR4 · 4x DIMM · mATX · Intel 12/13</div></div>
-          <div class="comp-right"><div class="comp-price">$ 130.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,1,'MSI B660M PRO-A DDR4','Placa Madre MSI','B660 · LGA1700 · mATX · 4x DDR4 · Intel',130000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="B660M PRO-A DDR4">
+          <div class="comp-body"><div class="comp-brand">MSI</div><div class="comp-name">B660M PRO-A DDR4</div><div class="comp-specs">Socket LGA1700 · DDR4 · 4x DIMM · mATX · Intel 12/13</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 130.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,1,'Asus PRIME Z690-P','Placa Madre Asus','Z690 · LGA1700 · ATX · 4x DDR5 · Intel',280000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="Mother Z690">
-          <div class="comp-info"><div class="comp-brand">Asus</div><div class="comp-name">PRIME Z690-P DDR5</div><div class="comp-specs">Socket LGA1700 · DDR5 · 4x DIMM · ATX · Intel 12/13</div></div>
-          <div class="comp-right"><div class="comp-price">$ 280.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,1,'Asus PRIME Z690-P','Placa Madre Asus','Z690 · LGA1700 · ATX · 4x DDR5 · Intel',280000,'https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=150&q=80" alt="PRIME Z690-P DDR5">
+          <div class="comp-body"><div class="comp-brand">Asus</div><div class="comp-name">PRIME Z690-P DDR5</div><div class="comp-specs">Socket LGA1700 · DDR5 · 4x DIMM · ATX · Intel 12/13</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 280.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -265,20 +331,20 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar memoria RAM..." oninput="filterCards(this,'step-2')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,2,'Kingston 8GB DDR4 3200MHz','Memoria Kingston','8GB · DDR4 · 3200MHz · 1 módulo',38000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80" alt="RAM 8GB">
-          <div class="comp-info"><div class="comp-brand">Kingston</div><div class="comp-name">8GB DDR4 3200MHz</div><div class="comp-specs">8GB · DDR4 · 3200MHz · 1 módulo · CL22</div></div>
-          <div class="comp-right"><div class="comp-price">$ 38.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,2,'Kingston 8GB DDR4 3200MHz','Memoria Kingston','8GB · DDR4 · 3200MHz · 1 módulo',38000,'https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80" alt="8GB DDR4 3200MHz">
+          <div class="comp-body"><div class="comp-brand">Kingston</div><div class="comp-name">8GB DDR4 3200MHz</div><div class="comp-specs">8GB · DDR4 · 3200MHz · 1 módulo · CL22</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 38.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
         <div class="comp-card" onclick="selectComp(this,2,'Kingston 16GB DDR4 3200MHz (2x8GB)','Memoria Kingston','16GB · DDR4 · 3200MHz · Kit 2x8GB',72000)">
           <img class="comp-img" src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80" alt="RAM 16GB">
           <div class="comp-info"><div class="comp-brand">Kingston</div><div class="comp-name">16GB DDR4 3200MHz Kit (2x8GB)</div><div class="comp-specs">16GB · DDR4 · 3200MHz · Dual Channel · Recomendado gaming</div></div>
           <div class="comp-right"><div class="comp-price">$ 72.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,2,'Corsair Vengeance 16GB DDR4 3600MHz RGB','Memoria Corsair','16GB · DDR4 · 3600MHz · RGB · 2x8GB',95000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80" alt="RAM Corsair RGB">
-          <div class="comp-info"><div class="comp-brand">Corsair</div><div class="comp-name">Vengeance 16GB DDR4 3600MHz RGB</div><div class="comp-specs">16GB · DDR4 · 3600MHz · RGB · Dual Channel</div></div>
-          <div class="comp-right"><div class="comp-price">$ 95.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,2,'Corsair Vengeance 16GB DDR4 3600MHz RGB','Memoria Corsair','16GB · DDR4 · 3600MHz · RGB · 2x8GB',95000,'https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80" alt="Vengeance 16GB DDR4 3600MHz RGB">
+          <div class="comp-body"><div class="comp-brand">Corsair</div><div class="comp-name">Vengeance 16GB DDR4 3600MHz RGB</div><div class="comp-specs">16GB · DDR4 · 3600MHz · RGB · Dual Channel</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 95.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
         <div class="comp-card" onclick="selectComp(this,2,'Kingston 32GB DDR4 3200MHz (2x16GB)','Memoria Kingston','32GB · DDR4 · 3200MHz · Kit 2x16GB',135000)">
           <img class="comp-img" src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=150&q=80" alt="RAM 32GB">
@@ -301,30 +367,30 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar almacenamiento..." oninput="filterCards(this,'step-3')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,3,'SSD Kingston A400 240GB SATA','Almacenamiento Kingston','240GB · SSD SATA · 500MB/s lectura',28000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="SSD 240">
-          <div class="comp-info"><div class="comp-brand">Kingston</div><div class="comp-name">SSD A400 240GB SATA</div><div class="comp-specs">240GB · SATA III · 500MB/s lectura · 2.5"</div></div>
-          <div class="comp-right"><div class="comp-price">$ 28.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,3,'SSD Kingston A400 240GB SATA','Almacenamiento Kingston','240GB · SSD SATA · 500MB/s lectura',28000,'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="SSD A400 240GB SATA">
+          <div class="comp-body"><div class="comp-brand">Kingston</div><div class="comp-name">SSD A400 240GB SATA</div><div class="comp-specs">240GB · SATA III · 500MB/s lectura · 2.5"</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 28.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,3,'SSD Kingston A400 480GB SATA','Almacenamiento Kingston','480GB · SSD SATA · 500MB/s lectura',45000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="SSD 480">
-          <div class="comp-info"><div class="comp-brand">Kingston</div><div class="comp-name">SSD A400 480GB SATA</div><div class="comp-specs">480GB · SATA III · 500MB/s lectura · 2.5"</div></div>
-          <div class="comp-right"><div class="comp-price">$ 45.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,3,'SSD Kingston A400 480GB SATA','Almacenamiento Kingston','480GB · SSD SATA · 500MB/s lectura',45000,'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="SSD A400 480GB SATA">
+          <div class="comp-body"><div class="comp-brand">Kingston</div><div class="comp-name">SSD A400 480GB SATA</div><div class="comp-specs">480GB · SATA III · 500MB/s lectura · 2.5"</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 45.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,3,'SSD NVMe Kingston NV2 1TB M.2','Almacenamiento Kingston','1TB · NVMe M.2 · 3500MB/s lectura',85000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="NVMe 1TB">
-          <div class="comp-info"><div class="comp-brand">Kingston</div><div class="comp-name">SSD NV2 1TB NVMe M.2</div><div class="comp-specs">1TB · PCIe NVMe M.2 · 3500MB/s · Ultra rápido</div></div>
-          <div class="comp-right"><div class="comp-price">$ 85.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,3,'SSD NVMe Kingston NV2 1TB M.2','Almacenamiento Kingston','1TB · NVMe M.2 · 3500MB/s lectura',85000,'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="SSD NV2 1TB NVMe M.2">
+          <div class="comp-body"><div class="comp-brand">Kingston</div><div class="comp-name">SSD NV2 1TB NVMe M.2</div><div class="comp-specs">1TB · PCIe NVMe M.2 · 3500MB/s · Ultra rápido</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 85.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,3,'HDD Seagate 1TB 7200rpm','Almacenamiento Seagate','1TB · HDD 7200rpm · SATA III · 3.5"',48000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="HDD 1TB">
-          <div class="comp-info"><div class="comp-brand">Seagate</div><div class="comp-name">Barracuda 1TB 7200RPM</div><div class="comp-specs">1TB · HDD · SATA III · 7200rpm · 3.5"</div></div>
-          <div class="comp-right"><div class="comp-price">$ 48.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,3,'HDD Seagate 1TB 7200rpm','Almacenamiento Seagate','1TB · HDD 7200rpm · SATA III · 3.5"',48000,'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="Barracuda 1TB 7200RPM">
+          <div class="comp-body"><div class="comp-brand">Seagate</div><div class="comp-name">Barracuda 1TB 7200RPM</div><div class="comp-specs">1TB · HDD · SATA III · 7200rpm · 3.5"</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 48.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,3,'HDD Seagate 2TB 7200rpm','Almacenamiento Seagate','2TB · HDD 7200rpm · SATA III · 3.5"',72000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="HDD 2TB">
-          <div class="comp-info"><div class="comp-brand">Seagate</div><div class="comp-name">Barracuda 2TB 7200RPM</div><div class="comp-specs">2TB · HDD · SATA III · 7200rpm · 3.5"</div></div>
-          <div class="comp-right"><div class="comp-price">$ 72.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,3,'HDD Seagate 2TB 7200rpm','Almacenamiento Seagate','2TB · HDD 7200rpm · SATA III · 3.5"',72000,'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=150&q=80" alt="Barracuda 2TB 7200RPM">
+          <div class="comp-body"><div class="comp-brand">Seagate</div><div class="comp-name">Barracuda 2TB 7200RPM</div><div class="comp-specs">2TB · HDD · SATA III · 7200rpm · 3.5"</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 72.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -342,30 +408,30 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar placa de video..." oninput="filterCards(this,'step-4')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce GTX 1650 4GB','Placa de Video NVIDIA','GTX 1650 · 4GB GDDR6 · 1080p gaming entry',185000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="GTX 1650">
-          <div class="comp-info"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce GTX 1650 4GB</div><div class="comp-specs">4GB GDDR6 · 128-bit · 1080p gaming entrada</div></div>
-          <div class="comp-right"><div class="comp-price">$ 185.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce GTX 1650 4GB','Placa de Video NVIDIA','GTX 1650 · 4GB GDDR6 · 1080p gaming entry',185000,'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="GeForce GTX 1650 4GB">
+          <div class="comp-body"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce GTX 1650 4GB</div><div class="comp-specs">4GB GDDR6 · 128-bit · 1080p gaming entrada</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 185.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce RTX 3060 12GB','Placa de Video NVIDIA','RTX 3060 · 12GB GDDR6 · 1080p/1440p gaming',420000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="RTX 3060">
-          <div class="comp-info"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce RTX 3060 12GB</div><div class="comp-specs">12GB GDDR6 · 192-bit · Ray Tracing · 1440p gaming</div></div>
-          <div class="comp-right"><div class="comp-price">$ 420.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce RTX 3060 12GB','Placa de Video NVIDIA','RTX 3060 · 12GB GDDR6 · 1080p/1440p gaming',420000,'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="GeForce RTX 3060 12GB">
+          <div class="comp-body"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce RTX 3060 12GB</div><div class="comp-specs">12GB GDDR6 · 192-bit · Ray Tracing · 1440p gaming</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 420.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce RTX 4060 8GB','Placa de Video NVIDIA','RTX 4060 · 8GB GDDR6 · DLSS 3 · 1440p gaming',580000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="RTX 4060">
-          <div class="comp-info"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce RTX 4060 8GB</div><div class="comp-specs">8GB GDDR6X · DLSS 3 · Ada Lovelace · 1440p</div></div>
-          <div class="comp-right"><div class="comp-price">$ 580.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce RTX 4060 8GB','Placa de Video NVIDIA','RTX 4060 · 8GB GDDR6 · DLSS 3 · 1440p gaming',580000,'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="GeForce RTX 4060 8GB">
+          <div class="comp-body"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce RTX 4060 8GB</div><div class="comp-specs">8GB GDDR6X · DLSS 3 · Ada Lovelace · 1440p</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 580.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,4,'AMD Radeon RX 6600 8GB','Placa de Video AMD','RX 6600 · 8GB GDDR6 · 1080p/1440p gaming',380000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="RX 6600">
-          <div class="comp-info"><div class="comp-brand">AMD</div><div class="comp-name">Radeon RX 6600 8GB</div><div class="comp-specs">8GB GDDR6 · 128-bit · FidelityFX Super Resolution</div></div>
-          <div class="comp-right"><div class="comp-price">$ 380.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,4,'AMD Radeon RX 6600 8GB','Placa de Video AMD','RX 6600 · 8GB GDDR6 · 1080p/1440p gaming',380000,'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="Radeon RX 6600 8GB">
+          <div class="comp-body"><div class="comp-brand">AMD</div><div class="comp-name">Radeon RX 6600 8GB</div><div class="comp-specs">8GB GDDR6 · 128-bit · FidelityFX Super Resolution</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 380.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce RTX 4070 12GB','Placa de Video NVIDIA','RTX 4070 · 12GB GDDR6X · DLSS 3 · 4K gaming',920000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="RTX 4070">
-          <div class="comp-info"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce RTX 4070 12GB</div><div class="comp-specs">12GB GDDR6X · DLSS 3 · Frame Gen · 4K gaming</div></div>
-          <div class="comp-right"><div class="comp-price">$ 920.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,4,'NVIDIA GeForce RTX 4070 12GB','Placa de Video NVIDIA','RTX 4070 · 12GB GDDR6X · DLSS 3 · 4K gaming',920000,'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=150&q=80" alt="GeForce RTX 4070 12GB">
+          <div class="comp-body"><div class="comp-brand">NVIDIA</div><div class="comp-name">GeForce RTX 4070 12GB</div><div class="comp-specs">12GB GDDR6X · DLSS 3 · Frame Gen · 4K gaming</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 920.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -383,20 +449,20 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar gabinete..." oninput="filterCards(this,'step-5')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,5,'Aerocool Cylon 3 RGB Mid Tower','Gabinete Aerocool','Mid Tower · ATX · RGB · Panel lateral vidrio',45000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80" alt="Gabinete RGB">
-          <div class="comp-info"><div class="comp-brand">Aerocool</div><div class="comp-name">Cylon 3 RGB Mid Tower</div><div class="comp-specs">ATX/mATX · RGB · Panel vidrio · 2x USB 3.0</div></div>
-          <div class="comp-right"><div class="comp-price">$ 45.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,5,'Aerocool Cylon 3 RGB Mid Tower','Gabinete Aerocool','Mid Tower · ATX · RGB · Panel lateral vidrio',45000,'https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80" alt="Cylon 3 RGB Mid Tower">
+          <div class="comp-body"><div class="comp-brand">Aerocool</div><div class="comp-name">Cylon 3 RGB Mid Tower</div><div class="comp-specs">ATX/mATX · RGB · Panel vidrio · 2x USB 3.0</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 45.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,5,'Corsair 4000D Airflow','Gabinete Corsair','Mid Tower · ATX · Sin RGB · Máximo airflow',95000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80" alt="Corsair 4000D">
-          <div class="comp-info"><div class="comp-brand">Corsair</div><div class="comp-name">4000D Airflow</div><div class="comp-specs">ATX · Panel vidrio · Máximo airflow · USB-C</div></div>
-          <div class="comp-right"><div class="comp-price">$ 95.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,5,'Corsair 4000D Airflow','Gabinete Corsair','Mid Tower · ATX · Sin RGB · Máximo airflow',95000,'https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80" alt="4000D Airflow">
+          <div class="comp-body"><div class="comp-brand">Corsair</div><div class="comp-name">4000D Airflow</div><div class="comp-specs">ATX · Panel vidrio · Máximo airflow · USB-C</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 95.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,5,'NZXT H510 Flow','Gabinete NZXT','Mid Tower · ATX · Panel vidrio · Diseño minimalista',115000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80" alt="NZXT H510">
-          <div class="comp-info"><div class="comp-brand">NZXT</div><div class="comp-name">H510 Flow</div><div class="comp-specs">ATX · Panel vidrio · Minimalista · USB-C · Airflow mejorado</div></div>
-          <div class="comp-right"><div class="comp-price">$ 115.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,5,'NZXT H510 Flow','Gabinete NZXT','Mid Tower · ATX · Panel vidrio · Diseño minimalista',115000,'https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=150&q=80" alt="H510 Flow">
+          <div class="comp-body"><div class="comp-brand">NZXT</div><div class="comp-name">H510 Flow</div><div class="comp-specs">ATX · Panel vidrio · Minimalista · USB-C · Airflow mejorado</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 115.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -414,20 +480,20 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar fuente..." oninput="filterCards(this,'step-6')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,6,'Corsair CV550 550W 80+ Bronze','Fuente Corsair','550W · 80+ Bronze · No modular',58000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80" alt="Fuente 550W">
-          <div class="comp-info"><div class="comp-brand">Corsair</div><div class="comp-name">CV550 550W 80+ Bronze</div><div class="comp-specs">550W · 80+ Bronze · No modular · Para GTX 1650 / RX 6600</div></div>
-          <div class="comp-right"><div class="comp-price">$ 58.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,6,'Corsair CV550 550W 80+ Bronze','Fuente Corsair','550W · 80+ Bronze · No modular',58000,'https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80" alt="CV550 550W 80+ Bronze">
+          <div class="comp-body"><div class="comp-brand">Corsair</div><div class="comp-name">CV550 550W 80+ Bronze</div><div class="comp-specs">550W · 80+ Bronze · No modular · Para GTX 1650 / RX 6600</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 58.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,6,'Corsair RM650x 650W 80+ Gold Modular','Fuente Corsair','650W · 80+ Gold · Full modular',125000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80" alt="Fuente 650W Gold">
-          <div class="comp-info"><div class="comp-brand">Corsair</div><div class="comp-name">RM650x 650W 80+ Gold</div><div class="comp-specs">650W · 80+ Gold · Full Modular · Para RTX 3060 / 4060</div></div>
-          <div class="comp-right"><div class="comp-price">$ 125.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,6,'Corsair RM650x 650W 80+ Gold Modular','Fuente Corsair','650W · 80+ Gold · Full modular',125000,'https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80" alt="RM650x 650W 80+ Gold">
+          <div class="comp-body"><div class="comp-brand">Corsair</div><div class="comp-name">RM650x 650W 80+ Gold</div><div class="comp-specs">650W · 80+ Gold · Full Modular · Para RTX 3060 / 4060</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 125.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,6,'Corsair RM850x 850W 80+ Gold Modular','Fuente Corsair','850W · 80+ Gold · Full modular',165000)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80" alt="Fuente 850W">
-          <div class="comp-info"><div class="comp-brand">Corsair</div><div class="comp-name">RM850x 850W 80+ Gold</div><div class="comp-specs">850W · 80+ Gold · Full Modular · Para RTX 4070 / 4080</div></div>
-          <div class="comp-right"><div class="comp-price">$ 165.000</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,6,'Corsair RM850x 850W 80+ Gold Modular','Fuente Corsair','850W · 80+ Gold · Full modular',165000,'https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=150&q=80" alt="RM850x 850W 80+ Gold">
+          <div class="comp-body"><div class="comp-brand">Corsair</div><div class="comp-name">RM850x 850W 80+ Gold</div><div class="comp-specs">850W · 80+ Gold · Full Modular · Para RTX 4070 / 4080</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 165.000</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -445,20 +511,20 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="search-wrap"><input class="search-bar" placeholder="Buscar monitor..." oninput="filterCards(this,'step-7')"></div>
       <div class="comp-grid">
-        <div class="comp-card" onclick="selectComp(this,7,'AsRock Challenger CL27FFA 27\" FHD 120Hz','Monitor AsRock','27\" · FHD 1080p · IPS · 120Hz · 1ms',238500)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80" alt="Monitor 27">
-          <div class="comp-info"><div class="comp-brand">AsRock</div><div class="comp-name">Challenger CL27FFA 27" FHD 120Hz</div><div class="comp-specs">27" · FHD 1080p · IPS · 120Hz · 1ms</div></div>
-          <div class="comp-right"><div class="comp-price">$ 238.500</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,7,'AsRock Challenger CL27FFA 27\" FHD 120Hz','Monitor AsRock','27\" · FHD 1080p · IPS · 120Hz · 1ms',238500,'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80" alt="Challenger CL27FFA 27" FHD 120Hz">
+          <div class="comp-body"><div class="comp-brand">AsRock</div><div class="comp-name">Challenger CL27FFA 27" FHD 120Hz</div><div class="comp-specs">27" · FHD 1080p · IPS · 120Hz · 1ms</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 238.500</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,7,'Samsung Odyssey G5 27\" QHD 180Hz','Monitor Samsung','27\" · QHD 1440p · IPS · 180Hz',460632)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80" alt="Monitor QHD">
-          <div class="comp-info"><div class="comp-brand">Samsung</div><div class="comp-name">Odyssey G5 27" QHD 180Hz</div><div class="comp-specs">27" · QHD 1440p · IPS · 180Hz · Base regulable</div></div>
-          <div class="comp-right"><div class="comp-price">$ 460.632</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,7,'Samsung Odyssey G5 27\" QHD 180Hz','Monitor Samsung','27\" · QHD 1440p · IPS · 180Hz',460632,'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80" alt="Odyssey G5 27" QHD 180Hz">
+          <div class="comp-body"><div class="comp-brand">Samsung</div><div class="comp-name">Odyssey G5 27" QHD 180Hz</div><div class="comp-specs">27" · QHD 1440p · IPS · 180Hz · Base regulable</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 460.632</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
-        <div class="comp-card" onclick="selectComp(this,7,'Samsung Odyssey G4 27\" FHD 300Hz','Monitor Samsung','27\" · FHD 1080p · IPS · 300Hz · G-SYNC',488700)">
-          <img class="comp-img" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80" alt="Monitor 300Hz">
-          <div class="comp-info"><div class="comp-brand">Samsung</div><div class="comp-name">Odyssey G4 27" FHD 300Hz</div><div class="comp-specs">27" · FHD 1080p · IPS · 300Hz · G-SYNC + FreeSync</div></div>
-          <div class="comp-right"><div class="comp-price">$ 488.700</div><div class="comp-stock">✓ Stock</div><button class="btn-select">Elegir</button></div>
+        <div class="comp-card" onclick="selectComp(this,7,'Samsung Odyssey G4 27\" FHD 300Hz','Monitor Samsung','27\" · FHD 1080p · IPS · 300Hz · G-SYNC',488700,'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80')">
+          <img class="comp-img-big" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=150&q=80" alt="Odyssey G4 27" FHD 300Hz">
+          <div class="comp-body"><div class="comp-brand">Samsung</div><div class="comp-name">Odyssey G4 27" FHD 300Hz</div><div class="comp-specs">27" · FHD 1080p · IPS · 300Hz · G-SYNC + FreeSync</div>
+          <div class="comp-footer"><div><div class="comp-price">$ 488.700</div><div class="comp-stock">✓ Stock</div></div><button class="btn-select">Elegir</button></div></div>
         </div>
       </div>
       <div class="step-nav">
@@ -521,7 +587,7 @@ const stepNames = ['Procesador','Placa Madre','Memoria RAM','Almacenamiento','Pl
 
 function formatPrice(n){ return '$ ' + n.toLocaleString('es-AR'); }
 
-function selectComp(card, stepIdx, name, brand, specs, price) {
+function selectComp(card, stepIdx, name, brand, specs, price, imgSrc) {
   // deselect others
   card.closest('.comp-grid').querySelectorAll('.comp-card').forEach(c => {
     c.classList.remove('selected');
@@ -529,8 +595,9 @@ function selectComp(card, stepIdx, name, brand, specs, price) {
   });
   card.classList.add('selected');
   card.querySelector('.btn-select').textContent = '✓ Elegido';
-  selections[stepIdx] = {name, brand, specs, price};
+  selections[stepIdx] = {name, brand, specs, price, imgSrc};
   updateSummary(stepIdx);
+  updateFlowBanner(stepIdx, imgSrc, name);
   document.getElementById('next-' + stepIdx).disabled = false;
 }
 
@@ -556,16 +623,35 @@ function removeComp(idx) {
   const item = document.getElementById('sum-' + idx);
   item.classList.add('empty');
   item.innerHTML = `<span class="sum-dot"></span><div style="flex:1"><div class="sum-cat">${stepNames[idx]}</div><div class="sum-name" style="color:var(--text3)">Sin elegir</div></div>`;
-  // deselect cards in that step
+  const fimg = document.getElementById('fimg-' + idx);
+  const flbl = document.getElementById('flbl-' + idx);
+  if (fimg && idx < 8) { fimg.innerHTML='🔲'; fimg.classList.remove('filled'); fimg.classList.add('empty'); flbl.classList.remove('filled'); }
   document.querySelectorAll('#step-' + idx + ' .comp-card').forEach(c => {
     c.classList.remove('selected');
-    c.querySelector('.btn-select').textContent = 'Elegir';
+    const btn = c.querySelector('.btn-select');
+    if (btn) btn.textContent = 'Elegir';
   });
   if (idx === currentStep) document.getElementById('next-' + idx).disabled = true;
   updateTotal();
 }
 
-function updateTotal() {
+function updateFlowBanner(idx, imgSrc, name) {
+  const wrap = document.getElementById('fimg-' + idx);
+  const lbl = document.getElementById('flbl-' + idx);
+  if (imgSrc && idx < 8) {
+    wrap.innerHTML = `<img src="${imgSrc}" style="width:100%;height:100%;object-fit:cover;border-radius:6px">`;
+    wrap.classList.remove('empty');
+    wrap.classList.add('filled');
+    lbl.classList.add('filled');
+  }
+}
+
+function updateFlowActive(n) {
+  for (let i = 0; i < 9; i++) {
+    const fi = document.getElementById('flow-' + i);
+    if (fi) fi.classList.toggle('active-step', i === n);
+  }
+}
   const total = selections.reduce((s, v) => s + (v ? v.price : 0), 0);
   document.getElementById('totalPrice').textContent = formatPrice(total);
   const msg = buildWAMessage();
@@ -630,6 +716,7 @@ function goToStep(n) {
   currentStep = n;
   document.getElementById('step-' + currentStep).classList.add('active');
   document.querySelectorAll('.step-tab')[currentStep].classList.add('active');
+  updateFlowActive(n);
   if (n === 8) buildFinalSummary();
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
