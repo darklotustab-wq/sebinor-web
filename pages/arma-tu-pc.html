@@ -213,26 +213,27 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
-// ─── DATOS DE COMPONENTES ───────────────────────────────────────────────────
+// ─── DATOS DE COMPONENTES (fuente: CompraGamer) ─────────────────────────────
+// Imágenes reales de imagenes.compragamer.com
+const CG = 'https://imagenes.compragamer.com/productos/';
 const STEPS = [
   {
     id: 'cpu', label: 'Procesador', shortLabel: 'CPU',
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Amd-fx.png/220px-Amd-fx.png',
+    icon: 'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=80&q=80',
+    optional: false,
     items: [
-      { brand:'AMD', name:'Ryzen 3 4100', specs:'4 núcleos · 3.8GHz · Socket AM4', price:120000,
-        img:'../img/components/cpu-amd-r3.svg' },
-      { brand:'AMD', name:'Ryzen 5 5600G', specs:'6 núcleos · 3.9GHz · AM4 · Gráficos Radeon integrados', price:195000,
+      { brand:'AMD', name:'Athlon 3000G 3.5GHz + Radeon Vega 3', specs:'AM4 · 2C/4T · 3.5GHz · Radeon Vega 3 integrada', price:59550,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_16481_Procesador_AMD_Athlon_3000G_3.5GHz___Radeon_Vega_3_AM4_8a762b5b-grn.jpg' },
+      { brand:'AMD', name:'Ryzen 5 5600G', specs:'AM4 · 6C/12T · 3.9GHz · Radeon Vega integrada', price:195000,
         img:'../img/components/cpu-amd-r5g.svg' },
-      { brand:'AMD', name:'Ryzen 5 5600X', specs:'6 núcleos · 3.7GHz · AM4 · Sin gráficos integrados', price:210000,
+      { brand:'AMD', name:'Ryzen 5 5600X', specs:'AM4 · 6C/12T · 3.7GHz · Sin gráficos', price:210000,
         img:'../img/components/cpu-amd-r5x.svg' },
-      { brand:'AMD', name:'Ryzen 7 5700X', specs:'8 núcleos · 3.4GHz · AM4 · Gaming avanzado', price:285000,
+      { brand:'AMD', name:'Ryzen 7 5700X', specs:'AM4 · 8C/16T · 3.4GHz · Gaming avanzado', price:285000,
         img:'../img/components/cpu-amd-r7.svg' },
-      { brand:'Intel', name:'Core i5-12400F', specs:'6 núcleos · 2.5GHz · LGA1700 · Sin gráficos', price:220000,
+      { brand:'Intel', name:'Core i5-12400F', specs:'LGA1700 · 6C · 2.5GHz · Sin gráficos', price:220000,
         img:'../img/components/cpu-intel-i5f.svg' },
-      { brand:'Intel', name:'Core i5-13600K', specs:'14 núcleos · 3.5GHz · LGA1700 · Alto rendimiento', price:380000,
+      { brand:'Intel', name:'Core i5-13600K', specs:'LGA1700 · 14C · 3.5GHz · Alto rendimiento', price:380000,
         img:'../img/components/cpu-intel-i5k.svg' },
-      { brand:'Intel', name:'Core i7-13700K', specs:'16 núcleos · 3.4GHz · LGA1700 · Workstation/Gaming premium', price:580000,
-        img:'../img/components/cpu-intel-i7k.svg' },
     ]
   },
   {
@@ -240,15 +241,13 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=80&q=80',
     optional: true,
     items: [
-      { brand:'Gigabyte', name:'A520M DS3H', specs:'Socket AM4 · DDR4 · 2x DIMM · mATX · AMD', price:85000,
-        img:'../img/components/mother-a520.svg' },
-      { brand:'MSI', name:'B450M PRO-VDH MAX', specs:'Socket AM4 · DDR4 · 4x DIMM · mATX · AMD', price:105000,
-        img:'../img/components/mother-b450.svg' },
-      { brand:'Gigabyte', name:'B550M AORUS Elite', specs:'Socket AM4 · DDR4 · 4x DIMM · mATX · PCIe 4.0', price:145000,
+      { brand:'AsRock', name:'B450M-HDV 4.0', specs:'AM4 · DDR4 · HDMI · M.2 · mATX', price:82550,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_13643_Mother_Asrock_B450M-HDV_4.0_AM4_HDMI_M.2__31247782-grn.jpg' },
+      { brand:'Gigabyte', name:'B550M AORUS Elite', specs:'AM4 · DDR4 · PCIe 4.0 · mATX', price:145000,
         img:'../img/components/mother-b550.svg' },
-      { brand:'MSI', name:'B660M PRO-A DDR4', specs:'Socket LGA1700 · DDR4 · 4x DIMM · mATX · Intel 12/13', price:130000,
+      { brand:'MSI', name:'B660M PRO-A DDR4', specs:'LGA1700 · DDR4 · mATX · Intel 12/13', price:130000,
         img:'../img/components/mother-b660.svg' },
-      { brand:'Asus', name:'PRIME Z690-P DDR5', specs:'Socket LGA1700 · DDR5 · 4x DIMM · ATX · Intel 12/13', price:280000,
+      { brand:'Asus', name:'PRIME Z690-P DDR5', specs:'LGA1700 · DDR5 · ATX · Intel 12/13', price:280000,
         img:'../img/components/mother-z690.svg' },
     ]
   },
@@ -257,13 +256,13 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1562408590-e32931084e23?w=80&q=80',
     optional: true,
     items: [
-      { brand:'Kingston', name:'8GB DDR4 3200MHz', specs:'8GB · DDR4 · 3200MHz · 1 módulo · CL22', price:38000,
-        img:'../img/components/ram-8gb.svg' },
-      { brand:'Kingston', name:'16GB DDR4 3200MHz Kit', specs:'16GB · DDR4 · 3200MHz · 2x8GB · Dual Channel', price:72000,
+      { brand:'KingDian', name:'DDR4 8GB 2666MHz CL22', specs:'8GB · DDR4 · 2666MHz · Intel Compatible', price:75600,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_54841_Memoria_KingDian_DDR4_8GB_2666MHz_CL22_Intel_dbb4caf2-grn.jpg' },
+      { brand:'Kingston', name:'16GB DDR4 3200MHz Kit', specs:'16GB · DDR4 · 3200MHz · 2x8GB · Dual Channel', price:150000,
         img:'../img/components/ram-16gb.svg' },
-      { brand:'Corsair', name:'Vengeance 16GB DDR4 3600 RGB', specs:'16GB · DDR4 · 3600MHz · RGB · Dual Channel', price:95000,
+      { brand:'Corsair', name:'Vengeance 16GB DDR4 3600 RGB', specs:'16GB · DDR4 · 3600MHz · RGB · Dual Channel', price:190000,
         img:'../img/components/ram-16rgb.svg' },
-      { brand:'Kingston', name:'32GB DDR4 3200MHz Kit', specs:'32GB · DDR4 · 3200MHz · 2x16GB · Streaming/Edición', price:135000,
+      { brand:'Kingston', name:'32GB DDR4 3200MHz Kit', specs:'32GB · DDR4 · 3200MHz · 2x16GB', price:391500,
         img:'../img/components/ram-32gb.svg' },
     ]
   },
@@ -272,15 +271,13 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=80&q=80',
     optional: true,
     items: [
-      { brand:'Kingston', name:'SSD A400 240GB SATA', specs:'240GB · SATA III · 500MB/s · 2.5"', price:28000,
-        img:'../img/components/ssd-240.svg' },
-      { brand:'Kingston', name:'SSD A400 480GB SATA', specs:'480GB · SATA III · 500MB/s · 2.5"', price:45000,
+      { brand:'Patriot', name:'SSD Burst Elite 240GB', specs:'240GB · SATA III · 540MB/s lectura', price:78250,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_30487_Disco_Solido_SSD_Patriot_240GB_Burst_Elite_540MB_s_047ba260-grn.jpg' },
+      { brand:'Kingston', name:'SSD A400 480GB SATA', specs:'480GB · SATA III · 500MB/s · 2.5"', price:95000,
         img:'../img/components/ssd-480.svg' },
-      { brand:'Kingston', name:'SSD NV2 1TB NVMe M.2', specs:'1TB · PCIe NVMe · 3500MB/s · Ultra rápido', price:85000,
+      { brand:'Kingston', name:'SSD NV2 1TB NVMe M.2', specs:'1TB · PCIe NVMe M.2 · 3500MB/s', price:145000,
         img:'../img/components/nvme-1tb.svg' },
-      { brand:'Seagate', name:'Barracuda 1TB 7200RPM', specs:'1TB · HDD · SATA III · 7200rpm · 3.5"', price:48000,
-        img:'../img/components/hdd-1tb.svg' },
-      { brand:'Seagate', name:'Barracuda 2TB 7200RPM', specs:'2TB · HDD · SATA III · 7200rpm · 3.5"', price:72000,
+      { brand:'Seagate', name:'Barracuda 2TB 7200RPM', specs:'2TB · HDD · SATA III · 7200rpm · 3.5"', price:98000,
         img:'../img/components/hdd-2tb.svg' },
     ]
   },
@@ -289,16 +286,29 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=80&q=80',
     optional: true,
     items: [
-      { brand:'NVIDIA', name:'GeForce GTX 1650 4GB', specs:'4GB GDDR6 · 128-bit · 1080p entrada', price:185000,
-        img:'../img/components/gpu-gtx1650.svg' },
-      { brand:'AMD', name:'Radeon RX 6600 8GB', specs:'8GB GDDR6 · 128-bit · FidelityFX SR · 1080p/1440p', price:380000,
-        img:'../img/components/gpu-rx6600.svg' },
+      { brand:'Biostar', name:'Radeon RX 580 8GB', specs:'8GB GDDR5 · 256bit · 2048SP · Gaming', price:246300,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_52753_Placa_de_Video_Biostar_Radeon_RX_580_8GB_GDDR5_2048SP_256bit_Gaming_2db2b9d8-grn.jpg' },
       { brand:'NVIDIA', name:'GeForce RTX 3060 12GB', specs:'12GB GDDR6 · Ray Tracing · DLSS · 1440p', price:420000,
         img:'../img/components/gpu-rtx3060.svg' },
-      { brand:'NVIDIA', name:'GeForce RTX 4060 8GB', specs:'8GB GDDR6X · DLSS 3 · Ada Lovelace · 1440p', price:580000,
+      { brand:'NVIDIA', name:'GeForce RTX 4060 8GB', specs:'8GB GDDR6X · DLSS 3 · Ada · 1440p', price:580000,
         img:'../img/components/gpu-rtx4060.svg' },
-      { brand:'NVIDIA', name:'GeForce RTX 4070 12GB', specs:'12GB GDDR6X · DLSS 3 · Frame Gen · 4K gaming', price:920000,
+      { brand:'NVIDIA', name:'GeForce RTX 4070 12GB', specs:'12GB GDDR6X · DLSS 3 · Frame Gen · 4K', price:920000,
         img:'../img/components/gpu-rtx4070.svg' },
+    ]
+  },
+  {
+    id: 'cooler', label: 'Cooler', shortLabel: 'Cooler',
+    icon: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=80&q=80',
+    optional: true,
+    items: [
+      { brand:'AMD/Intel', name:'Cooler Stock (incluido en CPU)', specs:'Cooler de fábrica incluido con el procesador', price:0,
+        img:'../img/components/cpu-amd-r5g.svg' },
+      { brand:'Cooler Master', name:'Hyper 212 Black Edition', specs:'Tower · 120mm · 150W TDP · AM4/LGA1700', price:45000,
+        img:'../img/components/psu-550.svg' },
+      { brand:'DeepCool', name:'AK400 Zero Dark', specs:'Tower · 120mm · 220W TDP · AM4/AM5/LGA1700', price:65000,
+        img:'../img/components/psu-650.svg' },
+      { brand:'NZXT', name:'Kraken 240 AIO Liquid', specs:'Líquida 240mm · 2x120mm fans · RGB · AM4/LGA1700', price:185000,
+        img:'../img/components/case-h510.svg' },
     ]
   },
   {
@@ -306,12 +316,12 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1593640408182-31c228f9bea2?w=80&q=80',
     optional: true,
     items: [
-      { brand:'Aerocool', name:'Cylon 3 RGB Mid Tower', specs:'ATX/mATX · RGB · Panel vidrio · USB 3.0', price:45000,
+      { brand:'Magnum Tech', name:'436B FRGB Vidrio Templado', specs:'Mid Tower · 1x120mm FRGB · Panel vidrio', price:35800,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_35870_Gabinete_Magnum_Tech_436B_1x120mm_FRGB_Fan_Vidrio_Templado_d7ebd745-grn.jpg' },
+      { brand:'Aerocool', name:'Cylon 3 RGB Mid Tower', specs:'ATX/mATX · RGB · Panel vidrio · USB 3.0', price:55000,
         img:'../img/components/case-cylon.svg' },
-      { brand:'Corsair', name:'4000D Airflow', specs:'ATX · Panel vidrio · Máximo airflow · USB-C', price:95000,
-        img:'https://m.media-amazon.com/images/I/71aePuBNoRL._AC_SL1500_.jpg' },
-      { brand:'NZXT', name:'H510 Flow', specs:'ATX · Panel vidrio · Minimalista · USB-C', price:115000,
-        img:'https://m.media-amazon.com/images/I/71aePuBNoRL._AC_SL1500_.jpg' },
+      { brand:'Corsair', name:'4000D Airflow', specs:'ATX · Máximo airflow · USB-C · Panel vidrio', price:95000,
+        img:'../img/components/case-4000d.svg' },
     ]
   },
   {
@@ -319,11 +329,11 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1563987648-77a5f0f4da6e?w=80&q=80',
     optional: true,
     items: [
-      { brand:'Corsair', name:'CV550 550W 80+ Bronze', specs:'550W · 80+ Bronze · No modular · Para GTX/RX entrada', price:58000,
-        img:'../img/components/psu-550.svg' },
-      { brand:'Corsair', name:'RM650x 650W 80+ Gold', specs:'650W · 80+ Gold · Full Modular · Para RTX 3060/4060', price:125000,
+      { brand:'XYZ', name:'650W 80+ Bronze ARGB Phantom', specs:'650W · 80+ Bronze · ARGB · Semi-modular', price:69050,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_49078_Fuente_XYZ_650W_80_Plus_Bronze_ARGB_Phantom_ce04d0cd-grn.jpg' },
+      { brand:'Corsair', name:'RM650x 650W 80+ Gold', specs:'650W · 80+ Gold · Full Modular', price:125000,
         img:'../img/components/psu-650.svg' },
-      { brand:'Corsair', name:'RM850x 850W 80+ Gold', specs:'850W · 80+ Gold · Full Modular · Para RTX 4070/4080', price:165000,
+      { brand:'Corsair', name:'RM850x 850W 80+ Gold', specs:'850W · 80+ Gold · Full Modular', price:165000,
         img:'../img/components/psu-850.svg' },
     ]
   },
@@ -332,11 +342,13 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=80&q=80',
     optional: true,
     items: [
+      { brand:'ASUS', name:'VY229HF-J 22" FHD IPS 100Hz', specs:'22" · FHD 1080p · IPS · 100Hz · HDMI', price:156600,
+        img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_50303_Monitor_Gamer_ASUS_VY229HF-J_22__FHD_IPS_100Hz_1a7170a3-grn.jpg' },
       { brand:'AsRock', name:'Challenger CL27FFA 27"', specs:'27" · FHD 1080p · IPS · 120Hz · 1ms', price:238500,
         img:'../img/components/mon-asrock.svg' },
-      { brand:'Samsung', name:'Odyssey G5 27" QHD 180Hz', specs:'27" · QHD 1440p · IPS · 180Hz · Base ajustable', price:460632,
+      { brand:'Samsung', name:'Odyssey G5 27" QHD 180Hz', specs:'27" · QHD 1440p · IPS · 180Hz', price:460632,
         img:'../img/components/mon-g5.svg' },
-      { brand:'Samsung', name:'Odyssey G4 27" FHD 300Hz', specs:'27" · FHD 1080p · IPS · 300Hz · G-SYNC+FreeSync', price:488700,
+      { brand:'Samsung', name:'Odyssey G4 27" FHD 300Hz', specs:'27" · FHD 1080p · IPS · 300Hz · G-Sync', price:488700,
         img:'../img/components/mon-g4.svg' },
     ]
   },
