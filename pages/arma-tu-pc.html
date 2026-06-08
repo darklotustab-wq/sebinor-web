@@ -101,9 +101,36 @@ a{text-decoration:none;color:inherit}
 /* NAV BUTTONS */
 .step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem;gap:1rem}
 .btn-prev{background:#fff;border:1.5px solid var(--gray3);color:var(--text2);padding:.7rem 1.5rem;border-radius:6px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
-.btn-next{background:var(--blue);color:#fff;border:none;padding:.7rem 2rem;border-radius:6px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-left:auto}
+
+/* BOTÓN SIGUIENTE FLOTANTE */
+.btn-next-float{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);z-index:500;
+  background:var(--blue);color:#fff;border:none;
+  padding:1rem 3rem;border-radius:50px;
+  font-family:'Inter',sans-serif;font-size:1rem;font-weight:800;
+  cursor:pointer;letter-spacing:.5px;
+  box-shadow:0 8px 32px rgba(10,79,168,.45);
+  display:flex;align-items:center;gap:.6rem;white-space:nowrap;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease, transform .4s ease, box-shadow .2s;
+  transform:translateX(-50%) translateY(12px);
+}
+.btn-next-float.visible{
+  opacity:1;pointer-events:all;
+  transform:translateX(-50%) translateY(0);
+}
+.btn-next-float:hover{background:var(--blue2);box-shadow:0 12px 40px rgba(10,79,168,.55);transform:translateX(-50%) translateY(-2px)}
+.btn-next-float .arrow{font-size:1.2rem;transition:transform .2s}
+.btn-next-float:hover .arrow{transform:translateX(4px)}
+.btn-next-float .pulse{
+  width:10px;height:10px;border-radius:50%;background:#fff;
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+
+/* botón siguiente inline (para paso final) */
+.btn-next{background:var(--blue);color:#fff;border:none;padding:.7rem 2rem;border-radius:6px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
 .btn-next:hover{background:var(--blue2)}
-.btn-next:disabled{background:var(--gray3);cursor:not-allowed}
 
 /* RESUMEN LATERAL */
 .summary-box{background:#fff;border:1.5px solid var(--gray2);border-radius:10px;overflow:hidden;position:sticky;top:calc(var(--nav-h) + 60px)}
@@ -278,7 +305,7 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="step-nav">
         <span></span>
-        <button class="btn-next" onclick="nextStep()" id="next-0" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -319,7 +346,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-1" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -355,7 +382,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-2" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -396,7 +423,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-3" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -437,7 +464,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-4" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -468,7 +495,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-5" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -499,7 +526,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-6" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -530,7 +557,7 @@ a{text-decoration:none;color:inherit}
       <div class="step-nav">
         <button class="btn-prev" onclick="prevStep()">← Anterior</button>
         <button class="btn-skip" onclick="skipStep()">Omitir</button>
-        <button class="btn-next" onclick="nextStep()" id="next-7" disabled>Siguiente →</button>
+        
       </div>
     </div>
 
@@ -575,9 +602,16 @@ a{text-decoration:none;color:inherit}
   </div>
 </div>
 
-<footer style="background:#0d1b2e;color:rgba(255,255,255,.6);padding:1.5rem;text-align:center;font-size:.78rem;margin-top:2rem">
+<footer style="background:#0d1b2e;color:rgba(255,255,255,.6);padding:1.5rem;text-align:center;font-size:.78rem;margin-top:2rem;padding-bottom:6rem">
   © 2026 SEBINOR Computación — Av. del Libertador 7615, Moreno
 </footer>
+
+<!-- BOTÓN SIGUIENTE FLOTANTE -->
+<button class="btn-next-float" id="btnNextFloat" onclick="nextStep()">
+  <span class="pulse"></span>
+  Continuar al siguiente paso
+  <span class="arrow">→</span>
+</button>
 
 <script>
 const STEPS = 9;
@@ -588,7 +622,6 @@ const stepNames = ['Procesador','Placa Madre','Memoria RAM','Almacenamiento','Pl
 function formatPrice(n){ return '$ ' + n.toLocaleString('es-AR'); }
 
 function selectComp(card, stepIdx, name, brand, specs, price, imgSrc) {
-  // deselect others
   card.closest('.comp-grid').querySelectorAll('.comp-card').forEach(c => {
     c.classList.remove('selected');
     c.querySelector('.btn-select').textContent = 'Elegir';
@@ -598,7 +631,8 @@ function selectComp(card, stepIdx, name, brand, specs, price, imgSrc) {
   selections[stepIdx] = {name, brand, specs, price, imgSrc};
   updateSummary(stepIdx);
   updateFlowBanner(stepIdx, imgSrc, name);
-  document.getElementById('next-' + stepIdx).disabled = false;
+  // Mostrar botón flotante con fade in
+  if (stepIdx < 8) showNextFloat();
 }
 
 function updateSummary(idx) {
@@ -633,6 +667,18 @@ function removeComp(idx) {
   });
   if (idx === currentStep) document.getElementById('next-' + idx).disabled = true;
   updateTotal();
+}
+
+function showNextFloat() {
+  const btn = document.getElementById('btnNextFloat');
+  const isLast = currentStep === 7;
+  btn.innerHTML = isLast
+    ? '<span class="pulse"></span> Ver resumen final <span class="arrow">→</span>'
+    : '<span class="pulse"></span> Continuar al siguiente paso <span class="arrow">→</span>';
+  btn.classList.add('visible');
+}
+function hideNextFloat() {
+  document.getElementById('btnNextFloat').classList.remove('visible');
 }
 
 function updateFlowBanner(idx, imgSrc, name) {
@@ -717,7 +763,10 @@ function goToStep(n) {
   document.getElementById('step-' + currentStep).classList.add('active');
   document.querySelectorAll('.step-tab')[currentStep].classList.add('active');
   updateFlowActive(n);
-  if (n === 8) buildFinalSummary();
+  // Mostrar flotante si ya hay selección en este paso, ocultar si no
+  if (n < 8 && selections[n]) showNextFloat();
+  else hideNextFloat();
+  if (n === 8) { buildFinalSummary(); hideNextFloat(); }
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
