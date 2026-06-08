@@ -222,6 +222,252 @@ const STEPS = [
     icon: 'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=80&q=80',
     optional: false,
     items: [
+      { brand:'AMD', name:'Athlon 3000G 3.5GHz + Radeon Vega 3', specs:'AM4 · 2C/4T · Radeon Vega 3 integrada · Cooler incluido', price:59550, img:'../img/components/cpu-athlon3000g.jpg' },
+      { brand:'AMD', name:'Ryzen 3 4100 + Wraith Stealth', specs:'AM4 · 4C/8T · 3.8GHz · Cooler incluido', price:97700, img:'../img/components/cpu-ryzen3-4100.jpg' },
+      { brand:'AMD', name:'Ryzen 3 3200G 4.0GHz + Radeon Vega 8', specs:'AM4 · 4C/4T · Radeon Vega 8 · Wraith Stealth', price:101300, img:'../img/components/cpu-ryzen3-3200g.jpg' },
+      { brand:'AMD', name:'Ryzen 5 3400G 4.2GHz + Radeon Vega 11', specs:'AM4 · 4C/8T · Radeon Vega 11 · Wraith Spire', price:132150, img:'../img/components/cpu-ryzen5-3400g.jpg' },
+      { brand:'AMD', name:'Ryzen 3 5300G 4.2GHz Turbo', specs:'AM4 · 4C/8T · Wraith Stealth Cooler incluido', price:159900, img:'../img/components/cpu-ryzen3-4100.jpg' },
+      { brand:'AMD', name:'Ryzen 5 5500 4.2GHz Turbo', specs:'AM4 · 6C/12T · Wraith Stealth Cooler incluido', price:166100, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'Intel', name:'Core i3-12100F 4.3GHz Turbo', specs:'LGA1700 · 4C/8T · Alder Lake · Sin gráficos', price:167650, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'Intel', name:'Core i3-14100F 4.7GHz Turbo', specs:'LGA1700 · 4C/8T · Raptor Lake · Sin gráficos', price:170150, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'AMD', name:'Ryzen 5 5600GT 4.6GHz Turbo', specs:'AM4 · 6C/12T · Radeon Vega · Wraith Stealth', price:251050, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'AMD', name:'Ryzen 7 5700 4.6GHz Turbo', specs:'AM4 · 8C/16T · Wraith Stealth Cooler incluido', price:239250, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'Intel', name:'Core i5-12400F 4.4GHz Turbo', specs:'LGA1700 · 6C/12T · Alder Lake · Sin gráficos', price:248450, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'Intel', name:'Core i5-14400F 4.7GHz Turbo', specs:'LGA1700 · 10C/16T · Raptor Lake · Sin gráficos', price:270400, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'AMD', name:'Ryzen 7 5700G 4.6GHz Turbo', specs:'AM4 · 8C/16T · Radeon Vega 8 · Wraith Stealth', price:303350, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'AMD', name:'Ryzen 5 7600 5.1GHz Turbo', specs:'AM5 · 6C/12T · Wraith Stealth Cooler incluido', price:343100, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'AMD', name:'Ryzen 7 5700X 4.6GHz Turbo', specs:'AM4 · 8C/16T · Sin cooler incluido', price:343950, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'Intel', name:'Core i5-14400 4.7GHz Turbo', specs:'LGA1700 · 10C/16T · Raptor Lake · Con gráficos', price:363850, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'AMD', name:'Ryzen 5 9600X 5.4GHz Turbo', specs:'AM5 · 6C/12T · Sin cooler incluido', price:380800, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'AMD', name:'Ryzen 7 8700G 5.1GHz Turbo', specs:'AM5 · 8C/16T · Radeon 780M · Wraith Stealth', price:391250, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'Intel', name:'Core i5-14600KF 5.3GHz Turbo', specs:'LGA1700 · 14C/20T · Raptor Lake · Sin gráficos', price:429950, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'AMD', name:'Ryzen 7 7800X3D 5.0GHz Turbo', specs:'AM5 · 8C/16T · 3D V-Cache · Gaming flagship', price:660200, img:'../img/components/cpu-ryzen5-5000.jpg' },
+      { brand:'Intel', name:'Core i7-14700K 5.6GHz Turbo', specs:'LGA1700 · 20C/28T · Raptor Lake · Máximo rendimiento', price:685250, img:'../img/components/cpu-intel-i3-14.jpg' },
+      { brand:'AMD', name:'Ryzen 9 7800X3D 5.2GHz Turbo', specs:'AM5 · 8C/16T · 3D V-Cache · Top gaming', price:759650, img:'../img/components/cpu-ryzen5-5000.jpg' },
+    ]!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armá tu PC - SEBINOR Computación</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0a4fa8;--blue2:#1565c0;--blue-light:#e3f0ff;--blue-dark:#063380;
+  --gray:#f4f7fc;--gray2:#e8eef7;--gray3:#c5d5e8;
+  --text:#0d1b2e;--text2:#3a5070;--text3:#6b8aaa;
+  --green:#059669;--red:#e53935;--nav-h:62px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--gray);color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+.topbar{background:var(--blue-dark);color:#fff;padding:.4rem 1.5rem;display:flex;justify-content:space-between;font-size:.75rem;flex-wrap:wrap;gap:.5rem}
+.topbar a{color:#90caf9;font-weight:600}
+.nav{background:#fff;box-shadow:0 2px 12px rgba(10,79,168,.12);height:var(--nav-h);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 1.5rem;height:100%;display:flex;align-items:center;gap:1.5rem}
+.nav-logo img{height:46px}
+.nav-links{display:flex;align-items:center;gap:.25rem;list-style:none;margin-left:auto}
+.nav-links a{padding:.45rem .8rem;border-radius:5px;font-size:.82rem;font-weight:500;color:var(--text2);transition:all .2s}
+.nav-links a:hover{color:var(--blue);background:var(--blue-light)}
+.nav-wa{background:var(--blue)!important;color:#fff!important;font-weight:700!important;border-radius:6px!important}
+
+.hero{background:linear-gradient(135deg,var(--blue-dark),var(--blue));padding:2.5rem 1.5rem;color:#fff;text-align:center}
+.hero h1{font-size:2rem;font-weight:900;margin-bottom:.5rem}
+.hero p{color:rgba(255,255,255,.8);font-size:.95rem;max-width:600px;margin:0 auto}
+
+/* FLOW BANNER */
+.flow-banner{background:#fff;border-bottom:1.5px solid var(--gray2);padding:.6rem 1.5rem;overflow-x:auto;position:sticky;top:var(--nav-h);z-index:90}
+.flow-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;min-width:700px;gap:0}
+.flow-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:.25rem;cursor:pointer;padding:.35rem .2rem;border-radius:6px;transition:background .2s}
+.flow-item:hover{background:var(--blue-light)}
+.flow-item.active-flow{background:var(--blue-light)}
+.flow-img-box{width:48px;height:48px;border-radius:8px;border:2px solid var(--gray2);overflow:hidden;background:var(--gray);display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:border-color .3s;position:relative}
+.flow-img-box img{width:100%;height:100%;object-fit:cover}
+.flow-img-box.done{border-color:var(--green)}
+.flow-img-box.done::after{content:'✓';position:absolute;bottom:-1px;right:-1px;background:var(--green);color:#fff;width:14px;height:14px;border-radius:50%;font-size:.55rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.flow-img-box.current{border-color:var(--blue);box-shadow:0 0 0 2px rgba(10,79,168,.2)}
+.flow-lbl{font-size:.58rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;text-align:center}
+.flow-lbl.done{color:var(--green)}
+.flow-lbl.current{color:var(--blue);font-weight:700}
+.flow-sep{color:var(--gray3);font-size:.9rem;flex-shrink:0;padding-bottom:1.2rem}
+
+/* PROGRESS TABS */
+.progress-wrap{background:#fff;border-bottom:1.5px solid var(--gray2);overflow-x:auto}
+.progress-inner{max-width:1300px;margin:0 auto;display:flex;min-width:700px}
+.step-tab{flex:1;padding:.65rem .4rem;text-align:center;font-size:.68rem;font-weight:600;color:var(--text3);border-bottom:3px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap}
+.step-tab.active{color:var(--blue);border-bottom-color:var(--blue);background:var(--blue-light)}
+.step-tab.done{color:var(--green);border-bottom-color:var(--green)}
+.step-num{display:block;font-size:.6rem;opacity:.6;margin-bottom:.1rem}
+
+/* LAYOUT */
+.builder-wrap{max-width:1300px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:1fr 300px;gap:1.5rem;align-items:start}
+
+.step-panel{display:none}
+.step-panel.active{display:block}
+
+.panel-header{background:#fff;border:1.5px solid var(--gray2);border-radius:10px;padding:1.1rem 1.4rem;margin-bottom:1rem;display:flex;align-items:center;gap:.9rem}
+.panel-icon{width:44px;height:44px;border-radius:7px;object-fit:cover;flex-shrink:0}
+.panel-title{font-size:1.05rem;font-weight:800}
+.panel-sub{font-size:.78rem;color:var(--text2);margin-top:.1rem}
+
+.search-wrap{position:relative;margin-bottom:1rem}
+.search-wrap::before{content:'🔍';position:absolute;left:.8rem;top:50%;transform:translateY(-50%);font-size:.8rem;pointer-events:none}
+.search-bar{width:100%;padding:.65rem 1rem .65rem 2.4rem;border:1.5px solid var(--gray2);border-radius:7px;font-family:'Inter',sans-serif;font-size:.88rem;color:var(--text);background:#fff}
+.search-bar:focus{outline:none;border-color:var(--blue)}
+
+/* TARJETAS - 2 columnas, imagen grande arriba */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+.comp-card{background:#fff;border:2px solid var(--gray2);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.comp-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 6px 20px rgba(10,79,168,.12)}
+.comp-card.selected{border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,79,168,.2)}
+
+.comp-photo{width:100%;height:160px;overflow:hidden;background:#f8f9ff;position:relative}
+.comp-photo img{width:100%;height:100%;object-fit:contain;padding:.75rem;transition:transform .4s}
+.comp-card:hover .comp-photo img{transform:scale(1.07)}
+.comp-selected-badge{display:none;position:absolute;top:.5rem;right:.5rem;background:var(--green);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .55rem;border-radius:4px;letter-spacing:.3px}
+.comp-card.selected .comp-selected-badge{display:block}
+
+.comp-body{padding:.9rem;flex:1;display:flex;flex-direction:column;gap:.3rem;border-top:1px solid var(--gray2)}
+.comp-brand-lbl{font-size:.62rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.8px}
+.comp-name-lbl{font-size:.88rem;font-weight:700;color:var(--text);line-height:1.3}
+.comp-specs-lbl{font-size:.73rem;color:var(--text2);line-height:1.5}
+
+.comp-foot{display:flex;align-items:center;justify-content:space-between;margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--gray2)}
+.comp-price-lbl{font-size:1.1rem;font-weight:800;color:var(--blue)}
+.comp-stock-lbl{font-size:.65rem;color:var(--green);font-weight:600}
+
+.btn-elegir{background:var(--blue);color:#fff;border:none;padding:.5rem 1rem;border-radius:6px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+.btn-elegir:hover{background:var(--blue2)}
+.comp-card.selected .btn-elegir{background:var(--green)}
+
+/* NAVEGACION PASOS */
+.step-nav{display:flex;align-items:center;gap:.75rem;margin-top:1.2rem;flex-wrap:wrap}
+.btn-prev{background:#fff;border:1.5px solid var(--gray3);color:var(--text2);padding:.65rem 1.3rem;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.btn-skip{background:transparent;border:1.5px solid var(--gray3);color:var(--text3);padding:.65rem 1.1rem;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+
+/* BOTÓN SIGUIENTE FLOTANTE */
+.btn-float{position:fixed;bottom:1.8rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:500;background:var(--blue);color:#fff;border:none;padding:.9rem 2.8rem;border-radius:50px;font-family:'Inter',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 8px 30px rgba(10,79,168,.5);display:flex;align-items:center;gap:.7rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease,box-shadow .2s}
+.btn-float.show{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.btn-float:hover{background:var(--blue2);box-shadow:0 12px 38px rgba(10,79,168,.6);transform:translateX(-50%) translateY(-2px)}
+.btn-float .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.7);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.btn-float .arr{font-size:1.1rem;transition:transform .2s}
+.btn-float:hover .arr{transform:translateX(4px)}
+
+/* RESUMEN LATERAL */
+.summary-box{background:#fff;border:1.5px solid var(--gray2);border-radius:10px;overflow:hidden;position:sticky;top:calc(var(--nav-h) + 120px)}
+.sum-head{background:var(--blue);color:#fff;padding:.9rem 1.1rem}
+.sum-head h3{font-size:.95rem;font-weight:800}
+.sum-head p{font-size:.7rem;opacity:.8;margin-top:.1rem}
+.sum-list{padding:.8rem 1rem;display:flex;flex-direction:column;gap:.5rem;max-height:380px;overflow-y:auto}
+.sum-row{display:flex;align-items:center;gap:.55rem;padding:.45rem .5rem;border-radius:5px;background:var(--gray)}
+.sum-row.empty{opacity:.35}
+.sum-dot{width:7px;height:7px;border-radius:50%;background:var(--gray3);flex-shrink:0}
+.sum-dot.on{background:var(--blue)}
+.sum-cat-lbl{font-size:.62rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.4px}
+.sum-name-lbl{font-size:.7rem;font-weight:600;color:var(--text);line-height:1.2}
+.sum-price-lbl{font-size:.75rem;font-weight:800;color:var(--blue);white-space:nowrap;margin-left:auto}
+.sum-rm{background:none;border:none;color:var(--text3);cursor:pointer;font-size:.85rem;padding:.1rem;margin-left:.2rem}
+.sum-rm:hover{color:var(--red)}
+.sum-total{border-top:1.5px solid var(--gray2);padding:.9rem 1.1rem}
+.sum-total-lbl{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.2rem}
+.sum-total-price{font-size:1.7rem;font-weight:900;color:var(--blue)}
+.sum-note{font-size:.62rem;color:var(--text3);margin-top:.15rem}
+.btn-cotizar{display:block;background:#25d366;color:#fff;text-align:center;padding:.85rem;border-radius:7px;font-weight:700;font-size:.9rem;margin-top:.7rem;transition:background .2s}
+.btn-cotizar:hover{background:#1ebe5d}
+.btn-reset{display:block;width:100%;background:none;border:1.5px solid var(--gray3);color:var(--text3);padding:.55rem;border-radius:6px;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;margin-top:.5rem}
+.btn-reset:hover{border-color:var(--red);color:var(--red)}
+
+/* RESUMEN FINAL */
+.final-card{background:#fff;border:1.5px solid var(--gray2);border-radius:10px;padding:1.5rem;margin-top:1rem}
+.final-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem;background:var(--gray);border-radius:6px;margin-bottom:.6rem;gap:1rem}
+.final-cat{font-size:.65rem;font-weight:700;color:var(--blue);text-transform:uppercase}
+.final-name{font-size:.88rem;font-weight:700}
+.final-specs{font-size:.72rem;color:var(--text2)}
+.final-price{font-size:1rem;font-weight:800;color:var(--blue);white-space:nowrap}
+.final-total{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--blue);padding-top:1rem;margin-top:.5rem}
+.final-total span{font-size:1rem;font-weight:700}
+.final-total strong{font-size:1.7rem;font-weight:900;color:var(--blue)}
+.btn-wa-final{display:flex;align-items:center;justify-content:center;gap:.6rem;background:#25d366;color:#fff;padding:1rem 2rem;border-radius:8px;font-weight:700;font-size:1rem;margin-top:1.2rem;transition:background .2s}
+.btn-wa-final:hover{background:#1ebe5d}
+
+@media(max-width:900px){.builder-wrap{grid-template-columns:1fr}.summary-box{position:static}}
+@media(max-width:600px){.comp-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>📍 Av. del Libertador 7615, Moreno &nbsp;|&nbsp; ⏰ Mar–Sáb 9:30–16:30</span>
+  <span>📞 <a href="tel:+5491526106011">+54 9 15 2610-6011</a></span>
+</div>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="../index.html"><img src="../img/logo.png" alt="SEBINOR"></a></div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="monitores.html">Monitores</a></li>
+      <li><a href="https://wa.me/5491526106011" class="nav-wa" target="_blank">WhatsApp</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>🖥️ Armá tu PC</h1>
+  <p>Elegí cada componente paso a paso y envianos el presupuesto por WhatsApp.</p>
+</div>
+
+<!-- FLOW BANNER -->
+<div class="flow-banner">
+  <div class="flow-inner" id="flowInner"></div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner" id="progressInner"></div>
+</div>
+
+<div class="builder-wrap">
+  <div id="stepsWrap"></div>
+
+  <!-- RESUMEN LATERAL -->
+  <div class="summary-box">
+    <div class="sum-head"><h3>Tu configuración</h3><p>Elegí cada componente</p></div>
+    <div class="sum-list" id="sumList"></div>
+    <div class="sum-total">
+      <div class="sum-total-lbl">Total estimado</div>
+      <div class="sum-total-price" id="sumTotal">$ 0</div>
+      <div class="sum-note">Precio orientativo · Consultá financiación</div>
+      <a href="#" class="btn-cotizar" id="btnCotizar" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="btn-reset" id="btnReset">🗑 Empezar de nuevo</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOTÓN FLOTANTE -->
+<button class="btn-float" id="btnFloat">
+  <span class="dot"></span>
+  <span id="btnFloatText">Continuar al siguiente paso</span>
+  <span class="arr">→</span>
+</button>
+
+<footer style="background:#0d1b2e;color:rgba(255,255,255,.55);padding:1.5rem;text-align:center;font-size:.78rem;padding-bottom:6rem">
+  © 2026 SEBINOR Computación — Av. del Libertador 7615, Moreno
+</footer>
+
+<script>
+// ─── DATOS DE COMPONENTES (fuente: CompraGamer) ─────────────────────────────
+// Imágenes reales de imagenes.compragamer.com
+const CG = 'https://imagenes.compragamer.com/productos/';
+const STEPS = [
+  {
+    id: 'cpu', label: 'Procesador', shortLabel: 'CPU',
+    icon: 'https://images.unsplash.com/photo-1555617981-dac3772e4b69?w=80&q=80',
+    optional: false,
+    items: [
       { brand:'AMD', name:'Athlon 3000G 3.5GHz + Radeon Vega 3', specs:'AM4 · 2C/4T · 3.5GHz · Radeon Vega 3 integrada', price:59550,
         img:'https://imagenes.compragamer.com/productos/compragamer_Imganen_general_16481_Procesador_AMD_Athlon_3000G_3.5GHz___Radeon_Vega_3_AM4_8a762b5b-grn.jpg' },
       { brand:'AMD', name:'Ryzen 5 5600G', specs:'AM4 · 6C/12T · 3.9GHz · Radeon Vega integrada', price:195000,
